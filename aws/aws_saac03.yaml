@@ -1,0 +1,198 @@
+# aws Certified Solutions Architect Associate SAA-C03
+
+Syllabus Overview:
+  Compute:
+    - EC2
+    - Lambda
+    - Elastic Beans
+  Storage:
+    - S3
+    - EBS
+    - EFS
+    - FSx
+    - Storage Gateway
+  Database:
+    - RDS
+    - DynamoDB
+    - Redshift
+  Networking:
+    - VPCs
+    - Direct Connect
+    - Route53
+    - API Gateway
+    - AWS Global Accelator
+  
+
+# aws Services
+
+IAM(Identity and Access Management):
+  - IAM is a Global Service.
+  - Groups only contains users, not other groups.
+  - arn stands for amazon resource name.
+
+  Roles:
+    - Role is an identity in IAM that has specific permissions.
+    - Roles are temporary which is preferred option for security purpose.
+    - Roles provide access without the access key IDs and secret access keys by attaching it to ec2.
+    - Policies control a role's permissions.
+
+
+
+S3(Simple Storage Solution):
+  - Can be use to store static data like text file, image file, videos, any file type but not Operating System or use as Databases.
+  - Total volume of data and number of objects is unlimited in S3.
+  - Objects can be maximum at 5TB in size.
+  - S3 Bucket is similar to folder in storage system. All aws accounts share the S3 namespace. Each S3 namespace is globally unique.
+  - S3 stores data as a key-value pair system. file name will be key and files data will be the value.
+  - S3 Bucket also have a version ID which is important for storing multiple version of a project.
+  - Metada which is data about the data that is storing in S3 Bucket. (i.e. content-type, last-modified)
+
+
+  Characteristic:
+    - S3 offers a range of storage class designed for different use cases.
+    - Define rules to automatically transition objects to a cheaper storage storage tier or delete objects that are no longer required after a set period of time.
+    - All versions of an object are stored and can be retrieved, including deleted objects.
+
+
+  Securing Data:
+    - Strong Read-After-Write consistency.
+    - S3 Buckets are private by default(including all objects within it). Buckets has to allow public access on both bucket and its objects in order to make the bucket public.
+    - S3 scales automatically to meet demand.
+    - In S3 bucket policy should be enabled for entire bucket.
+
+
+  S3 Versioning:
+    - All versions of objects are stored in S3. This includes all writes even deleted objects. Once enabled cannot be disabled. Only suspend is allowed.
+    - It is a great backup tool.
+    - Can be integrated with lifecycle rules.
+    - Multi Factor Authentication support for securing data.
+
+
+  S3 Classes:
+    - S3 Standard
+    - S3 Standard-Infrequent Access
+    - S3 Standard One Zone-Infrequent Access
+    - S3 Intelligent-Tiering
+    - S3 Glacier Options:
+      - Glacier Instant Retrieval
+      - Glacier Flexible Retrieval
+      - Glacier Deep Archive
+
+
+  Life Cycle Management:
+    - Automate moving of objects between different storage tiers.
+    - Can be used in conjunction with versioning.
+    - Can be applied to current version as well as previous versions.
+
+
+  S3 Objects Lock and Glacier Vault Lock:
+    S3 Objects Lock:
+      - S3 Object Lock, uses to store objects using write once, rady many (WORM) model.
+      - S3 Object Lock, can be used in a individual objects or across the bucket as a whole.
+      
+      Object Lock provides two ways to manage object retention (retention periods and legal holds):
+        - Retention period — Specifies a fixed period of time during which an object remains locked. During this period, your object is WORM-protected and can't be overwritten or deleted.
+        - Legal hold — Provides the same protection as a retention period, but it has no expiration date. Instead, a legal hold remains in place until you explicitly remove it. Legal holds are independent from retention periods. "s3:PutObjectLegalHold"
+
+      - S3 Object, comes with two modes (governance mode and compliance mode):
+        - Governance Mode - Users can't overwrite or delete and object version or alter it's lock settings unless they have special permissions.
+        - Compliance Mode - A protected object version cannot be overwritten or deleted by any user, including the root user account in aws.
+
+    S3 Glacier Vault Lock:
+      - S3 Glacier Vault Lock helps you to easily deploy and enforce compliance controls for individual S3 Glacier vaults with a Vault Lock policy. You can specify controls such as "write once read many" (WORM) in a Vault Lock policy and lock the policy from future edits. Once locked, policy can no longer be changed.
+
+
+  S3 Ecncryption:
+    Encryption in transit:
+      - SSL/TLS
+      - HTTPS
+
+    Encryption at REST:
+      Server Side Encryption:
+        - SSE-S3 (AES 256-bit)
+        - SSE-KMS (KMS Managed Keys)
+        - SSE-C (Customer Managed)
+
+      Client Side Encryption:
+        - User enforce to encrypt files before uploading to S3.
+
+      Enforcing Encryption with a Bucket Policy:
+        - A bucket policy can deny all PUT request that don't include x-amz-server-side-encryption parameter in the request header.
+
+      SSE-KMS:
+        - If KMS encryption used in object then it has limits in object requests.
+        - uploading/downloading will count towards KMS quota.
+        - region specific, it is 5500, 10000, or 30000 requests per second.
+        - currently KMS doesn't allow to request for quota increase.
+
+
+  S3 Performance:
+    - Prefix - bucketname/folder/subfolder/file.txt > /folder/subfolder
+    - 3500 PUT/DELETE/COPY and 5500 GET/HEAD request per second, per prefix.
+    - More prefix means more speed, if there is 2 prefixes ahcieving object request will be 11000 per second.
+    - Multipart uploads for uploading files to increase performance. Should be used for any files that is over 100 MB, required for over 5 GB files.
+    - Use byte-range fetches to download files from S3 for increase perfromance.
+
+
+
+EC2(Elastic Compute Cloud):
+    - AMI - Amazon Machine Image
+    - https://instances.vantage.sh/ (EC2 Instance Info)
+
+
+  EC2 Purchasing Options:
+    - On-Demand Instances - short time workload, testing, predictable pricing, pay by hour or second, depending on the type of instance. Without paying any upfront.
+
+    - Reserved Instances (1 & 3 years) - Application with steady state or predictable usage or application that require reserved capacity. Make upfront to reduce compute cost. Up to 72% discount on hourly charge. Reserved instances can be scheduled for a time and it is regional.
+
+      - Standard Reserved Instances - Long workloads, up to 72% off on-demand price.
+    
+      - Convertible Reserved Instances - Long workloads with flexible instances, up to 54% off on-demand price. Has ability to change reserved instances type greater or equal value.
+
+    - Spot Instances - Short workloads with urgent capacity, cheap, can lose instances (less reliable). Use cases high performance computing, big data analytics, CI/CD pipeline, containerized. Can't be used in persistent workloads, databases or in critical jobs. Save upto 90%. You can block spot instances from terminating by using "Spot Block". A "Spot Fleet" is a collection of "Spot Instances" and (optionally) "On-Demand Instances".
+  
+    - Dedicated Hosts
+      - Compliance - Regulatory requirements that may not support multi-tenant virtualization.
+      - Licensing - Greate for licensing that doesn't support multi-tanant or cloud deployment.
+      - On-Demand - Can be purchase for on-demand (hourly).
+      - Reserved - Can be purchased as a reservation for up to 70% off the on-demand price.
+
+
+  Security Groups and Bootstrap scripts:
+    - Security groups are virtual firewall for ec2 instances. By default, everything is blocked.
+    - All inbound traffic is blocked and outbound traffic is allowed in by default.
+    - Security groups can be attached to multiple instances also instances can have multiple groups attached to it.
+    - Security groups live outside the EC2 instances.
+    - User data is bootstrap scripts.
+    - Bootstrap scripts runs at instance boot time and it has root level permission. It passes user data to ec2 instance. Can be use to install applications like web servers and database.
+    - Meta data is data about ec2 instances.
+    - Bootstrap scripts can be use to access metadata.
+
+
+  EC2 Networking:
+    - ENI (Elastic Netowork Interface) - For basic, day to day networking.
+    - EN (Enhanced Networking) - Uses single root i/o virtualization (SR-IOV) to provide high performance.
+      - Depending on instance type, Enhanced Networking can be enabled using:
+      ENA (Elastic Network Adapter) - Supports network speeds upto 100 Gbps for supported instance types.
+      VF (Intel 82599 Virtual Function Interface) - Supports network speeds upto 10 Gbps for supported instance types. Typically used on older instances.
+    - EFA (Elastic Fabric Adapter) - accelerates high performance computing (HPC) using os-bypass and mahcine learning applications.
+
+
+  EC2 Placement Group:
+    - Only certain types of instances can be launched in a placement group.
+    - Placement group merging is not allowed.
+    - To move a existing instance to placement group first the instance need to be in stopped stat  - 
+      - Cluster - Grouping of instances with a single availability zone. Recommended for applications that need low latency or high network throughput or both. Only certain instance types can be launched into a cluster palcement group.
+
+      - Spread - Spread placement group is a group of instances that each placed on distinct underlying hardware. Spread placement groups are recommended for applications that have small number of critical instances that should be kept separate from each other.
+
+      - Partition - Spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions.
+
+
+  Ports Info:
+    - 22 = SSH (Secure Shell) - For login into Linux.
+    - 21 = FTP (File Transfer Protocol) - Upload files into file file share.
+    - 22 = SFTP (Secure File Transfer Protocol) - Upload files using SSH.
+    - 80 = HTTP - Access unsecured website.
+    - 443 = HTTPS - Access secured website.
+    - 3389 = RDP (Remote Desktop Protocol) - Log into a windows instance.
