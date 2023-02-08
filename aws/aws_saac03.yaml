@@ -69,11 +69,12 @@ S3(Simple Storage Solution):
 
 
   S3 Classes:
-    - S3 Standard
-    - S3 Standard-Infrequent Access
-    - S3 Standard One Zone-Infrequent Access
-    - S3 Intelligent-Tiering
-    - S3 Glacier Options:
+    S3 Standard Options:
+      - S3 Standard
+      - S3 Standard-Infrequent Access
+      - S3 Standard One Zone-Infrequent Access
+      - S3 Intelligent-Tiering
+    S3 Glacier Options:
       - Glacier Instant Retrieval
       - Glacier Flexible Retrieval
       - Glacier Deep Archive
@@ -136,8 +137,17 @@ S3(Simple Storage Solution):
 
 
 EC2(Elastic Compute Cloud):
-    - AMI - Amazon Machine Image
-    - https://instances.vantage.sh/ (EC2 Instance Info)
+  - AMI - Amazon Machine Image
+  - https://instances.vantage.sh/ (EC2 Instance Info)
+
+
+  Ports Info:
+    - 22 SSH (Secure Shell) - For login into Linux.
+    - 21 FTP (File Transfer Protocol) - Upload files into file file share.
+    - 22 SFTP (Secure File Transfer Protocol) - Upload files using SSH.
+    - 80 HTTP - Access unsecured website.
+    - 443 HTTPS - Access secured website.
+    - 3389 RDP (Remote Desktop Protocol) - Log into a windows instance.
 
 
   EC2 Purchasing Options:
@@ -149,7 +159,7 @@ EC2(Elastic Compute Cloud):
     
       - Convertible Reserved Instances - Long workloads with flexible instances, up to 54% off on-demand price. Has ability to change reserved instances type greater or equal value.
 
-    - Spot Instances - Short workloads with urgent capacity, cheap, can lose instances (less reliable). Use cases high performance computing, big data analytics, CI/CD pipeline, containerized. Can't be used in persistent workloads, databases or in critical jobs. Save upto 90%. You can block spot instances from terminating by using "Spot Block". A "Spot Fleet" is a collection of "Spot Instances" and (optionally) "On-Demand Instances".
+    - Spot Instances - Short workloads with urgent capacity, cheap, can lose instances (less reliable). Use cases high performance computing, big data analytics, CI/CD pipeline, containerized. Can't be used in persistent workloads, databases or in critical jobs. Save upto 90%. For persistent spot request user have to go and cancel the spot request first then terminate. A "Spot Fleet" is a collection of "Spot Instances" and (optionally) "On-Demand Instances". Spot fleet will try and match the target capacity with the price restraints, can be configured with multiple pools. You can block spot instances from terminating by using "Spot Block".
   
     - Dedicated Hosts
       - Compliance - Regulatory requirements that may not support multi-tenant virtualization.
@@ -165,23 +175,25 @@ EC2(Elastic Compute Cloud):
     - Security groups live outside the EC2 instances.
     - User data is bootstrap scripts.
     - Bootstrap scripts runs at instance boot time and it has root level permission. It passes user data to ec2 instance. Can be use to install applications like web servers and database.
-    - Meta data is data about ec2 instances.
-    - Bootstrap scripts can be use to access metadata.
+    - Meta data is data about data, in this case it is data about the ec2 instances.
+    - Bootstrap scripts aka "user data" can be use to access metadata.
 
 
   EC2 Networking:
-    - ENI (Elastic Netowork Interface) - For basic, day to day networking.
-    - EN (Enhanced Networking) - Uses single root i/o virtualization (SR-IOV) to provide high performance.
-      - Depending on instance type, Enhanced Networking can be enabled using:
-      ENA (Elastic Network Adapter) - Supports network speeds upto 100 Gbps for supported instance types.
-      VF (Intel 82599 Virtual Function Interface) - Supports network speeds upto 10 Gbps for supported instance types. Typically used on older instances.
-    - EFA (Elastic Fabric Adapter) - accelerates high performance computing (HPC) using os-bypass and mahcine learning applications.
+    - ENI (Elastic Network Interface) - For basic, day to day networking.
+    - EN (Enhanced Networking) - Uses single root i/o virtualization (SR-IOV) to provide high performance. Depending on instance type, Enhanced Networking can be enabled using
+      - ENA (Elastic Network Adapter) - Supports network speeds upto 100 Gbps for supported instance types.
+      - VF (Intel 82599 Virtual Function Interface) - Supports network speeds upto 10 Gbps for supported instance types. Typically used on older instances.
+    - EFA (Elastic Fabric Adapter) - accelerates high performance computing (HPC) using os-bypass and machine learning applications.
 
 
   EC2 Placement Group:
     - Only certain types of instances can be launched in a placement group.
     - Placement group merging is not allowed.
-    - To move a existing instance to placement group first the instance need to be in stopped stat  - 
+    - To move a existing instance to placement group first the instance need to be in stopped state. Moving and removing instances using aws CLI or aws SDKs but available via console yet.
+    
+    There are 3 types of ec2 placement groups.
+
       - Cluster - Grouping of instances with a single availability zone. Recommended for applications that need low latency or high network throughput or both. Only certain instance types can be launched into a cluster palcement group.
 
       - Spread - Spread placement group is a group of instances that each placed on distinct underlying hardware. Spread placement groups are recommended for applications that have small number of critical instances that should be kept separate from each other.
@@ -189,10 +201,3 @@ EC2(Elastic Compute Cloud):
       - Partition - Spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions.
 
 
-  Ports Info:
-    - 22 = SSH (Secure Shell) - For login into Linux.
-    - 21 = FTP (File Transfer Protocol) - Upload files into file file share.
-    - 22 = SFTP (Secure File Transfer Protocol) - Upload files using SSH.
-    - 80 = HTTP - Access unsecured website.
-    - 443 = HTTPS - Access secured website.
-    - 3389 = RDP (Remote Desktop Protocol) - Log into a windows instance.
