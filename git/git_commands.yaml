@@ -11,18 +11,18 @@ configuration:
 tracking:
   - git init # intializing git repository.
   - touch .gitignore # creating ".gitignore" file and put file names in there you don't want to be tracked.
+  - git rm --cached <file_name> # ignoring a previously committed file, then adding it in the .gitignore file.
   - git add -A # adding all the files to the staging area, doesn't matter which dir you are on the repo.
   - git reset <filename> # Removing files from staging area. "git reset" with no command will remove every files that are in staging area.
+  - git diff # shows defference between previous and new change to the files that hasn't commited or added to staging area.
   - git commit -m <message> # commiting files to the git repository.
   - git status # Checking the status of files in local and remote.
   - git log # Checking the previous commits with commit hashes.
-  - mkdir <dir_name> # to create a remote path for remote repo.
+  - git diff <commit_hash> # shows defference between previous and new change to the files in specific commit timeline.
   - git init --bare # initializing this command on remote directory to make the dir as bare repo.
   - git remote add origin <path> # adding local repo into remote location.
   - git clone </path/repo_name> <location> # cloning a repository from remote location.
   - git remote -v # checking information about the remote location of the repository.
-  - git diff # shows defference between previous and new change to the files that hasn't commited or added to staging area.
-  - git diff <commit_hash> # shows defference between previous and new change to the files in specific commit timeline.
   - git branch # lists all of the local branches.
   - git branch -a # checking all the branches that are local and remote.
   - git branch <name> # create new branch.
