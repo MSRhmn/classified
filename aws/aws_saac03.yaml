@@ -28,12 +28,14 @@ Syllabus Overview:
 IAM(Identity and Access Management):
   - IAM is a Global Service.
   - Groups only contains users, not other groups.
-  - arn stands for amazon resource name.
+  - ARN stands for amazon resource name.
+  - Always give users minimum amount of access required to do their jobs.
+  - Create groups and attach them to users, this is the best practice.
 
   Roles:
     - Role is an identity in IAM that has specific permissions.
     - Roles are temporary which is preferred option for security purpose.
-    - Roles provide access without the access key IDs and secret access keys by attaching it to ec2.
+    - Roles provide access without the access key IDs and secret access keys by attaching it to ec2. This is the preferred method.
     - Policies control a role's permissions.
 
 
@@ -200,4 +202,13 @@ EC2(Elastic Compute Cloud):
 
       - Partition - Spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions.
 
+
+  vCenter and VMware:
+    - vCenter can be deplyed into aws cloud using VMware.
+
+  
+  Outposts:
+    - extending aws into data center this is where outposts comes in.
+    - aws outposts racks for large deployment.
+    - aws servers for smaller deployments.
 
