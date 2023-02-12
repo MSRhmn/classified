@@ -1,2 +1,4 @@
-/git/progit.pdf
+*.pdf
+/linux/shell_scripting
+/linux/ubuntu_scripts.sh
 
