@@ -205,6 +205,7 @@ EC2(Elastic Compute Cloud):
 
   vCenter and VMware:
     - vCenter can be deplyed into aws cloud using VMware.
+    - vCenter on AWS allows you to extend your private cloud to the AWS cloud.
 
   
   Outposts:
@@ -212,3 +213,81 @@ EC2(Elastic Compute Cloud):
     - aws outposts racks for large deployment.
     - aws servers for smaller deployments.
 
+
+
+EBS(Elastic Block Store):
+  - Storage volumes that can attach to ec2 instances.
+  - Automatically replicated within a single availability zone to protect against hardware failure.
+  - Designed for mission critical data like production workloads.
+  - Dynamically increase capacity and change the volume type with no downtime or performance impact in live system.
+
+
+  Volume Types:
+
+    - SSD(Solid State Disk):
+
+      - General Purpose SSD(gp2):
+        - 3 IOPS per GiB, upto maximum of 16,000 IOPS per volume.
+        - gp2 volumes smaller than 1 TB can burst upto 3,000 IOPS.
+        - Good for boot volumes, development and test applications that are not latency sensitive.
+
+      - General Purpose SSD(gp3):
+        - Predictable 3000 IOPS baseline performance and 125 MiB/s regardless of volume size.
+        - Ideal for applications that require high performance at a low cost, such as MySQL, cassandra, virtual desktops and Hadoop analytics.
+        - the performance of gp3 4 times faster than max throughput of gp2 volumens.
+
+      
+      - Provisioned IOPS SSD(io1):
+        - The high performance option and the most expensive.
+        - Upto 64,000 IOPS per volume.
+        - 50 IOPS per GiB.
+        - Use case if there is need more than 16000 IOPS for both io1 and io2.
+        - Designed for I/O-intensive applications, large database and latency sensitive workloads.
+
+      - Provisioned IOPS SSD(io2):
+        - Latest generation.
+        - higher durability and more IOPS.
+        - io2 is the same price as the io1.
+        - 500 IOPS per GiB, Upto 64,000 IOPS.
+        - 99.999% durablity instead of 99.9%
+        - Designed for I/O-intensive applications, large database and latency sensitive workloads. Application that needs high durability.
+
+
+    - HDD(Hard Disk Drive):
+
+      - Throughput Optimized HDD(st1):
+        - Low cost HDD Volume.
+        - Baseline throughput of 40 MB/s per TB.
+        - Ability to burst upto 250 MB/s per TB.
+        - Maximum throughput of 500 MB/s per volume.
+        - Frequently accessed, throughput-intensive workloads.
+        - Big data, Data warehouse, ETL(Extract Transoform and Load) and log processsing. **
+        - A cost effective way to store mountains of data.
+        - Cannot be a boot volume.
+      
+      - Cold HDD(sc1):
+        - Baseline throughput of 12 MB/s per TB.
+        - Ability to burst upto 40 MB/s per TB.
+        - Maximum throughput of 250 MB/s per volume.
+        - A good choice for colder data requiring less scans per day.
+        - Good for applications that need lowest cost and performance not a factor.
+        - Cannot be a boot volume.
+
+
+  Volumes and Snapshots:
+    - Volumes exist on EBS where Snapshots exist on S3.
+    - Snapshots are point-in-time photographs of the volumes and are incremental in nature.
+    - Fisrt snapshot will take some time to create. For consistent snapshot, stop the instance and detach the volume.
+    - Snapshots can be shared between aws accounts as well as between regions, but first it needs to be copied in target region.
+    - EBS volumes can be resized in the fly as well as changing of the volume types.
+
+
+    EBS Volumes:
+      - EBS volumes always will be at the same AZ as the EC2 instance to which it is attached.
+      - EBS volumes can be resized on the fly. There is no need to stop or restart the instance. However, filesystem needed to be extended on the OS level so OS can see the resized volume.
+      - Volume types can be changed on the fly (e.g., from gp2 to io2). There is no need to stop or restart the instance.
+
+    Snapshots:
+      - Snapshot only captures data that has been written to EBS volume, which might exclude any data that has locally cached by application or the OS. For a consistent snapshot, it is recommended to stop the instance and take a snap.
+      - Snapshot of a encrypted EBS volume will be encrypted automatically.
+      - Snapshots can be shared only in the region which they were created. To share in other regions, snapshots need to copy in other regions first.
