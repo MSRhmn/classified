@@ -291,3 +291,51 @@ EBS(Elastic Block Store):
       - Snapshot only captures data that has been written to EBS volume, which might exclude any data that has locally cached by application or the OS. For a consistent snapshot, it is recommended to stop the instance and take a snap.
       - Snapshot of a encrypted EBS volume will be encrypted automatically.
       - Snapshots can be shared only in the region which they were created. To share in other regions, snapshots need to copy in other regions first.
+
+
+  Volume Encryption:
+
+    Encrypted Volumes:
+      - Data at rest is encrypted inside the volume.
+      - All data in flight moving between the instance and volume is encrypted.
+      - All snapshots are encrypted.
+      - All volumes created from snapshots are encrypted.
+
+    Encrypt Voumes:
+      - Create a snapshot of the unencrypted volume.
+      - Create a copy of the snapshot and select the encryption option.
+      - Create an AMI from the encrypted snapshot.
+      - Use the AMI to launch the new encrypted instance.
+
+
+  EC2 Hibernation:
+    - Preserves the in-memory(RAM) on persistent storage(EBS).
+    - Much faster in boot up because there is no need to reload the operating system.
+    - Instance RAM must be less than 150 GB.
+    - Instance families include C3, C4, C5, M3, M4, M5, R3, R4 and R5 (CMR Group).
+    - Available for Windows, Amazon Linux 2 AMI and Ubuntu.
+    - Instances can't be hibernated for more than 60 days.
+    - Available for On-Demand instances and Reserved instances.
+
+
+
+Elastic File System(EFS):
+  - Highly scalable shared storage using NFS.
+  - Supports the Network File System version 4(NFSv4) protocol.
+  - Only pay for the storage that in use (no pre-provisioned required).
+  - Can scale upto petabytes.
+  - Supports thousands of concurrent NFS connection.
+  - Data is stored accross multiple AZs within a region.
+  - Read after write consistency.
+
+
+FSx:
+
+  EFS:
+    - Distributed, highly resilient storage for linux instances and linux-based application.
+
+  Amazon FSx for Windows:
+    - Centralized storage for windows-based application, such as Sharepoint, Microsoft SQL Server, Workspaces, IIS Web Server or any other native microsoft application.
+  
+  Amazon FSx for Lustre:
+    - High-speed, high-capacity distributed storage. This wil be for application that do high performance computing(HPC), financial modeling etc. FSx for lustre can store data directly on S3.
