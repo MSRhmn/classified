@@ -318,24 +318,44 @@ EBS(Elastic Block Store):
     - Available for On-Demand instances and Reserved instances.
 
 
+  Elastic File System(EFS):
+    - Highly scalable shared storage using NFS.
+    - Supports the Network File System version 4(NFSv4) protocol.
+    - Only pay for the storage that in use (no pre-provisioned required).
+    - Can scale upto petabytes.
+    - Supports thousands of concurrent NFS connection.
+    - Data is stored accross multiple AZs within a region.
+    - Read after write consistency.
 
-Elastic File System(EFS):
-  - Highly scalable shared storage using NFS.
-  - Supports the Network File System version 4(NFSv4) protocol.
-  - Only pay for the storage that in use (no pre-provisioned required).
-  - Can scale upto petabytes.
-  - Supports thousands of concurrent NFS connection.
-  - Data is stored accross multiple AZs within a region.
-  - Read after write consistency.
+
+  FSx:
+
+    EFS:
+      - Distributed, highly resilient storage for linux instances and linux-based application.
+
+    Amazon FSx for Windows:
+      - Centralized storage for windows-based application, such as Sharepoint, Microsoft SQL Server, Workspaces, IIS Web Server or any other native Microsoft application.
+
+    Amazon FSx for Lustre:
+      - High-speed, high-capacity distributed storage. This wil be for application that do high performance computing(HPC), financial modeling etc. FSx for lustre can store data directly on S3.
 
 
-FSx:
+  AMIs:
+    EBS vs Instance Store:
+      - Instance Store volumes are sometimes called ephemeral storage.
+      - Instance Store volume cannot be stopped. If the underlying host/hardware fails data will be lost.
+      - EBS-backed instances can be stopped. Data will not lose in the stopped state.
+      - EBS and Instance Store both can be rebooted without losing data.
+      - By default, root volume will be deleted. However, with EBS volumes, it can be configured to keep the root device volume.
+      - An AMI is just a blueprint for ec2 instance.
 
-  EFS:
-    - Distributed, highly resilient storage for linux instances and linux-based application.
+  AWS Backup:
+    
+    Consolidation:
+      - Use AWS Backup to backup aws services, such as EC2, EBS, EFS, FSx for Lustre, FSx for windows file server and Storage Gateway.
+    
+    Organisation:
+      - AWS Organisation can be conjunctioned with AWS Backup to backup different aws services across multiple aws accounts.
 
-  Amazon FSx for Windows:
-    - Centralized storage for windows-based application, such as Sharepoint, Microsoft SQL Server, Workspaces, IIS Web Server or any other native microsoft application.
-  
-  Amazon FSx for Lustre:
-    - High-speed, high-capacity distributed storage. This wil be for application that do high performance computing(HPC), financial modeling etc. FSx for lustre can store data directly on S3.
+    Benifits:
+      - Backup gives centralized control, by automating backups and defining life cycle policies for data. To get better compliance, enforcing backup policies, ensuring backups are encrypted and audit them once they are completed.
