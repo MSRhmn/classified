@@ -359,3 +359,23 @@ EBS(Elastic Block Store):
 
     Benifits:
       - Backup gives centralized control, by automating backups and defining life cycle policies for data. To get better compliance, enforcing backup policies, ensuring backups are encrypted and audit them once they are completed.
+
+
+
+Databases:
+  
+  RDS:
+    - SQL Server, Oracle, MySQL, PostgreSQL, MariaDB and Amazon Aurora are RDS type database.
+    - RDS is for OLTP works. Great for processing small transactions, like customer orders, banking transactions, payments and booking systems.
+    - Not suitable for OLAP. Use Redshift for data warehousing and OLAP tasks. Like analyzing large amount of data, reporting and sales forecasting.
+
+
+  Multi-AZ:
+    - An exact copy of production database in another Availability Zone.
+    - Used for disaster recovery.
+    - In the event of a failure, RDS will automatically fail over to the stand by instance.
+
+  Read Replica:
+    - A read only copy of the primary database in the same AZ, cross-AZ or cross-Region.
+    - Use to increase or scale read performance.
+    - Great for read-heavy workloads and takes the load off to primary database for read-only workloads (e.g., Business Intelligence reporting jobs).
