@@ -10,12 +10,12 @@ iam:
 
 s3:
   - aws s3 ls # listing s3 buckets in aws account.
-  - aws s3 mb s3://bucket_name --region ap-south-1
+  - aws s3 mb s3://bucket_name --region <region_name>
   - aws s3 rb s3://bucket_name --force
   - aws s3 cp file.ext s3://bucket_name
 
 
 ec2:
-  - ssh ec2-user@ip_address -i <ssh-private-key> # "-i" flag identifys the private key if the key isn't added to ssh-agent. 
+  - ssh ec2-user@ip/host_address -i <ssh-private-key> # "-i" flag identifys the private key if the key hasn't added to ssh-agent. 
   - curl http://169.254.169.254/latest/meta-data # meta data query
   - curl http://169.254.169.254/latest/user-data # user data query
