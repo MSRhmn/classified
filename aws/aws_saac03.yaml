@@ -370,12 +370,26 @@ Databases:
     - Not suitable for OLAP. Use Redshift for data warehousing and OLAP tasks. Like analyzing large amount of data, reporting and sales forecasting.
 
 
-  Multi-AZ:
-    - An exact copy of production database in another Availability Zone.
-    - Used for disaster recovery.
-    - In the event of a failure, RDS will automatically fail over to the stand by instance.
+    Multi-AZ:
+      - An exact copy of production database in another Availability Zone.
+      - Used for disaster recovery.
+      - In the event of a failure, RDS will automatically fail over to the stand by instance.
 
-  Read Replica:
-    - A read only copy of the primary database in the same AZ, cross-AZ or cross-Region.
-    - Use to increase or scale read performance.
-    - Great for read-heavy workloads and takes the load off to primary database for read-only workloads (e.g., Business Intelligence reporting jobs).
+    Read Replica:
+      - A read only copy of the primary database in the same AZ, cross-AZ or cross-Region.
+      - Use to increase or scale read performance.
+      - Great for read-heavy workloads and takes the load off to primary database for read-only workloads (e.g., Business Intelligence reporting jobs).
+
+
+    Amazon Aurora:
+      - 2 copies of data in each availability zone, with a minimum of 3 availability zone which makes it 6 copies of data.
+      - 3 types of replicas available >> Aurora replicas, MySQL replicas and PostgreSQL replicas. Automated failover is only available with Aurora replicas.
+      - Aurora has automated backup turned-on by default. Snapshots can be taken with Aurora and share with other AWS accounts.
+      - Aurora serverless use for simple, cost effective option for infrequent intermittent or unpredictable workloads.
+
+
+    Dynamo DB:
+      - Stored on SSD storage.
+      - Spread across 3 geographically distinct data centers.
+      - Eventually consistent reads (default). Consistency across all copies of data is reached within a second. Repeating a read after a short time should return the updated data. Best read performance.
+      - Strongly consistent reads. A strongly consistent read returns a result that reflects all writes that received a successful repsonse prior to the end.
