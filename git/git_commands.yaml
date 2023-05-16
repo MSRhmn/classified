@@ -21,6 +21,7 @@ tracking:
   - git diff <commit_hash> # shows defference between previous and new change to the files in specific commit timeline.
   - git init --bare # initializing this command on remote directory to make the dir as bare repo.
   - git remote add origin <path> # adding local repo into remote location.
+  - git remote remove origin # removing remote location from the local repo.
   - git clone </path/repo_name> <location> # cloning a repository from remote location.
   - git remote -v # checking information about the remote location of the repository.
   - git branch # lists all of the local branches.
@@ -36,11 +37,10 @@ tracking:
   - git push origin -d <branch_name> # to delete a branch from remote.
   - git push -u origin <branch_name> # pushing a new local branch into remote repository. "-u" stands for upstream.
   - git pull origin <branch_name> # checking the remote repository branch, if it is updated.
-  - git push origin <branch_name> # pushing file into the remote repository branch.
+  - git push origin <branch_name> # pushing changes into the remote repository branch.
 
 
 troubleshooting:
-  - git config --bool core.bare true # When remote repository is non-bare. This command have to execute in the remote repository.
   - rm -f .git/index.lock | .git/ORIG_HEAD.lock # if there is showing error because of index or ORIG_HEAD .lock file.
 
 
