@@ -175,6 +175,7 @@ EC2(Elastic Compute Cloud):
     - All inbound traffic is blocked and outbound traffic is allowed in by default.
     - Security groups can be attached to multiple instances also instances can have multiple groups attached to it.
     - Security groups live outside the EC2 instances.
+    - Security groups are stateful.
     - User data is bootstrap scripts.
     - Bootstrap scripts runs at instance boot time and it has root level permission. It passes user data to ec2 instance. Can be use to install applications like web servers and database.
     - Meta data is data about data, in this case it is data about the ec2 instances.
@@ -369,16 +370,17 @@ Databases:
     - RDS is for OLTP works. Great for processing small transactions, like customer orders, banking transactions, payments and booking systems.
     - Not suitable for OLAP. Use Redshift for data warehousing and OLAP tasks. Like analyzing large amount of data, reporting and sales forecasting.
 
-
     Multi-AZ:
       - An exact copy of production database in another Availability Zone.
       - Used for disaster recovery.
       - In the event of a failure, RDS will automatically fail over to the stand by instance.
 
     Read Replica:
-      - A read only copy of the primary database in the same AZ, cross-AZ or cross-Region.
+      - A read only copy of the primary database in the same AZ, cross-AZ or cross-region.
       - Use to increase or scale read performance.
       - Great for read-heavy workloads and takes the load off to primary database for read-only workloads (e.g., Business Intelligence reporting jobs).
+      - Automatic backup must be enabled in order to deploy a read replica.
+      - SQL Server, Oracle, MySQL, PostgreSQL, MariaDB allow upto 5 read replicas to each DB instance.
 
 
     Amazon Aurora:
@@ -393,3 +395,121 @@ Databases:
       - Spread across 3 geographically distinct data centers.
       - Eventually consistent reads (default). Consistency across all copies of data is reached within a second. Repeating a read after a short time should return the updated data. Best read performance.
       - Strongly consistent reads. A strongly consistent read returns a result that reflects all writes that received a successful repsonse prior to the end.
+
+      Dynamo DB Transactions:
+        - ACID requirement is the task for Dynamo DB Transactions.
+        - Dynamo DB Transactions provide developers atomocity, consistency, isolation and durability (ACID) across 1 or more tables within a single AWS account and region.
+        - All-or-nothing transactions.
+
+      On-demand Backup and Restore:
+        - Full backups at any time.
+        - Zero impact on table performance or availability.
+        - Consistent within seconds and retained until deleted.
+        - Operates within same region as the source table.
+
+      Point-in-time Recovery (PITR):
+        - Protects against accidental writes or deletes.
+        - Restore to any point in the last 35 days.
+        - Incremental backups.
+        - Not enabled by default.
+        - Latest restorable - 5 minutes in the past.
+
+      Dynamo DB Streams and Global Tables:
+        - Managed multi-master and multi-region replication.
+          - Globally distributed application.
+          - based on Dynamo DB streams.
+          - Multi-region redundency for disaster recovery or high availability.
+          - No application re-writes.
+          - Replication latency under 1 second.
+
+      
+    Document DB:
+      - Migrating Mongo DB from on-premises to AWS, use case will be Amazon Document DB.
+
+    
+    AWS Keyspaces:
+      - Migrating big data Cassandra cluster to AWS, use case will be AWS Keyspaces.
+
+
+    Neptune:
+      - Migrating graph databases, use cases will be Neptune.
+
+    
+    QLDB (Quantum Ledger Database):
+      - Migrating immutable database, use cases will be QLDB.
+
+
+    Timestream:
+      - Store large amount of time-series data for analysis, use cases is Timestream.
+  
+
+
+VPC:
+  - VPC is a logical data center in AWS.
+  - Consists of internet gateways (virtual private gateways), route tables, network access control lists, subnets and security groups.
+  - 1 subnet is always in 1 availability zone.
+  
+
+  NAT Gateways:
+    - A highly available, managed Network Address Translation (NAT) service that instances in private subnets can use to connect to services in other VPCs, on-premises networks, or the internet.
+    - Redundent inside the availability zone.
+    - Starts at 5 Gbps and scales currently to 45 Gbps.
+    - No need to patch.
+    - Not associate with security groups.
+    - Automatically assigned a public IP address.
+    - If there is resources in multiple availability zone and they share a NAT gateway. In the event NAT gateways zone is down, resource in other availability zone will lose internet access.
+    - To create a availability zone-independent architecture, create NAT gateway in each availability zone and configure routing to ensure resources use the NAT gateway in the same availability zone.
+    
+
+    Network ACLs:
+      - VPC automatically comes with a default network ACL, by default it allows all inbound and outbound traffic.
+      - By default custom network ACLs denies all inbound and outbound traffic untill rules are added.
+      - Each subnet in VPC must be associated with a network ACL. If not explicitly associated with a network ACL, the subnet will automatically associate with the default netowork ACL.
+      - IP addresses are blocked by the network ACL not security groups.
+      - Network ACLs can be associate with multiple subnets; however, a subnet can be associated with a only 1 ACL at a time. When a new network ACL attached to a subnet the previous association is removed.
+      - Network ACLs are numbered list of rules that are evaluated in order, starting with the lowest numbered rule.
+      - Netwrok ACLs have separate inbound and outbound rules and each rule can either allow or deny traffic.
+      - Network ACLs are stateless; responses to allowed inbound traffic are subject to the rules for the outbound traffic (and vice versa).
+
+
+    VPC Endpoints:
+      - Use cases will be AWS services without leaving the amazon internal network.
+      - 2 types of VPC Endpoints, interface endpoints and gateway endpoints.
+      - Gateways endpoints only supports S3 and DynamoDB.
+
+
+    VPC Peering:
+      - Allows 1 VPC to connect another via direct network route using private IP addresses.
+      - Transitive peering is not supported. This must always be in a hub-and-spoke model.
+      - Peer between regions is available.
+      - No overlapping CIDR address ranges.
+
+
+    AWS PrivateLink:
+      - Peering VPCs to tens, hundreds or thousands of customer VPCs.
+      - Doesn't require VPC peering; no route tables, NAT Gateways, Internet Gateways etc.
+      - Requires Network Load balancer on Service VPC and ENI on the customer VPC.
+
+
+    AWS VPN CloudHub:
+      - If there is multiple sites, each with its own VPN connection. AWS VPN CloudHub can be use to connect those sites together. It's similar to VPC peering in that it works on a hub-and-spoke model.
+      - AWS VPN CloudHub is low cost and easy to manage. Though it operates over the public internet. All traffic between the customer gateway and AWS VPN CloudHub is encrypted.
+
+
+    Direct Connect:
+      - Direct Connect directly connects data centers to AWS.
+      - Useful for high-throughput workloads (e.g., lots of network traffic)
+      - Helpful when need a stable and reliable secure connection.
+
+
+    Transit Gateway:
+      - Route tables can be use to limit how VPCs talk one to another.
+      - Works with Direct Connect as well as VPN connections.
+      - Supports IP multicast (not supported by any other AWS services).
+
+
+    AWS Wavelength:
+      - 5G increasing application speeds at the edge using mobile networks.
+
+
+    
