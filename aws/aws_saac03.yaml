@@ -1,4 +1,4 @@
-# aws Certified Solutions Architect Associate SAA-C03
+# AWS Certified Solutions Architect Associate SAA-C03
 
 Syllabus Overview:
   Compute:
@@ -21,9 +21,10 @@ Syllabus Overview:
     - Route53
     - API Gateway
     - AWS Global Accelator
+
   
 
-# aws Services
+# AWS Services
 
 IAM(Identity and Access Management):
   - IAM is a Global Service.
@@ -44,30 +45,24 @@ S3(Simple Storage Solution):
   - Can be use to store static data like text file, image file, videos, any file type but not Operating System or use as Databases.
   - Total volume of data and number of objects is unlimited in S3.
   - Objects can be maximum at 5TB in size.
-  - S3 Bucket is similar to folder in storage system. All aws accounts share the S3 namespace. Each S3 namespace is globally unique.
-  - S3 stores data as a key-value pair system. file name will be key and files data will be the value.
-  - S3 Bucket also have a version ID which is important for storing multiple version of a project.
-  - Metada which is data about the data that is storing in S3 Bucket. (i.e. content-type, last-modified)
+  - S3 Bucket is similar to folder in storage system. All AWS accounts share the S3 namespace. Each S3 namespace is globally unique.
+  - S3 stores data as a key-value pair system. File name will be key and files data will be the value.
+  - S3 Bucket also has a version ID which is important for storing multiple version of a project.
+  - Metadata which is data about the data that is stored in S3 Bucket. (i.e. content-type, last-modified)
 
 
-  Characteristic:
-    - S3 offers a range of storage class designed for different use cases.
-    - Define rules to automatically transition objects to a cheaper storage storage tier or delete objects that are no longer required after a set period of time.
-    - All versions of an object are stored and can be retrieved, including deleted objects.
-
-
-  Securing Data:
-    - Strong Read-After-Write consistency.
-    - S3 Buckets are private by default(including all objects within it). Buckets has to allow public access on both bucket and its objects in order to make the bucket public.
-    - S3 scales automatically to meet demand.
-    - In S3 bucket policy should be enabled for entire bucket.
+  Securing Data with S3 Block Public Access:
+    - S3 Buckets are private by default (including all objects within it). Buckets has to allow public access on both bucket and its objects in order to make the bucket public.
+    - Individual objects can be public by using Object ACLs.
+    - Entire bucket can be public using S3 bucket policy.
+    - S3 scales automatically with demand.
 
 
   S3 Versioning:
     - All versions of objects are stored in S3. This includes all writes even deleted objects. Once enabled cannot be disabled. Only suspend is allowed.
     - It is a great backup tool.
     - Can be integrated with lifecycle rules.
-    - Multi Factor Authentication support for securing data.
+    - Multi Factor Authentication supports for securing data.
 
 
   S3 Classes:
@@ -89,17 +84,14 @@ S3(Simple Storage Solution):
 
 
   S3 Objects Lock and Glacier Vault Lock:
+    
     S3 Objects Lock:
-      - S3 Object Lock, uses to store objects using write once, rady many (WORM) model.
+      - S3 Object Lock, uses to store objects using write once, read many (WORM) model.
       - S3 Object Lock, can be used in a individual objects or across the bucket as a whole.
       
-      Object Lock provides two ways to manage object retention (retention periods and legal holds):
-        - Retention period — Specifies a fixed period of time during which an object remains locked. During this period, your object is WORM-protected and can't be overwritten or deleted.
-        - Legal hold — Provides the same protection as a retention period, but it has no expiration date. Instead, a legal hold remains in place until you explicitly remove it. Legal holds are independent from retention periods. "s3:PutObjectLegalHold"
-
-      - S3 Object, comes with two modes (governance mode and compliance mode):
+      - S3 Object Lock, comes with two modes (governance mode and compliance mode):
         - Governance Mode - Users can't overwrite or delete and object version or alter it's lock settings unless they have special permissions.
-        - Compliance Mode - A protected object version cannot be overwritten or deleted by any user, including the root user account in aws.
+        - Compliance Mode - A protected object version cannot be overwritten or deleted by any user, including the root user account in AWS.
 
     S3 Glacier Vault Lock:
       - S3 Glacier Vault Lock helps you to easily deploy and enforce compliance controls for individual S3 Glacier vaults with a Vault Lock policy. You can specify controls such as "write once read many" (WORM) in a Vault Lock policy and lock the policy from future edits. Once locked, policy can no longer be changed.
@@ -122,24 +114,24 @@ S3(Simple Storage Solution):
       Enforcing Encryption with a Bucket Policy:
         - A bucket policy can deny all PUT request that don't include x-amz-server-side-encryption parameter in the request header.
 
-      SSE-KMS:
-        - If KMS encryption used in object then it has limits in object requests.
-        - uploading/downloading will count towards KMS quota.
-        - region specific, it is 5500, 10000, or 30000 requests per second.
-        - currently KMS doesn't allow to request for quota increase.
-
 
   S3 Performance:
     - Prefix - bucketname/folder/subfolder/file.txt > /folder/subfolder
-    - 3500 PUT/DELETE/COPY and 5500 GET/HEAD request per second, per prefix.
-    - More prefix means more speed, if there is 2 prefixes ahcieving object request will be 11000 per second.
-    - Multipart uploads for uploading files to increase performance. Should be used for any files that is over 100 MB, required for over 5 GB files.
-    - Use byte-range fetches to download files from S3 for increase perfromance.
+    - 3500 PUT/COPY/POST/DELETE and 5500 GET/HEAD request per second, per prefix.
+    - More prefix means more speed, if there is 2 prefixes achieving object request will be 11000 per second.
+    - Objects that are encrypted in S3 with SSE-KMS has limit to uploading/downloading objects. It is region specific, it's either 5500, 10000 or 30000 request per second.
+    - Multipart uploads for uploading files to increase performance. Should be used for any files that is over 100 MB, required for file over 5 GB.
+    - Use S3 byte-range fetches to download files from S3 for increase perfromance.
+
+
+  S3 Replication:
+    - Replicate objects from one bucket to another. Supported for both cross region and same region replication.
+    - Objects in a existing bucket are not replicated automatically.
+    - Delete markers are not replicated by default. But can be turn that on as an option.
 
 
 
 EC2(Elastic Compute Cloud):
-  - AMI - Amazon Machine Image
   - https://instances.vantage.sh/ (EC2 Instance Info)
 
 
@@ -161,7 +153,7 @@ EC2(Elastic Compute Cloud):
     
       - Convertible Reserved Instances - Long workloads with flexible instances, up to 54% off on-demand price. Has ability to change reserved instances type greater or equal value.
 
-    - Spot Instances - Short workloads with urgent capacity, cheap, can lose instances (less reliable). Use cases high performance computing, big data analytics, CI/CD pipeline, containerized. Can't be used in persistent workloads, databases or in critical jobs. Save upto 90%. For persistent spot request user have to go and cancel the spot request first then terminate. A "Spot Fleet" is a collection of "Spot Instances" and (optionally) "On-Demand Instances". Spot fleet will try and match the target capacity with the price restraints, can be configured with multiple pools. You can block spot instances from terminating by using "Spot Block".
+    - Spot Instances - Short workloads with urgent capacity, cheap, can lose instances (less reliable). Use cases high performance computing, big data analytics, CI/CD pipeline, containerized. Can't be used in persistent workloads, databases or in critical jobs. Save upto 90%. For terminating persistent spot request user have to go and cancel the spot request first then terminate the instances. A "Spot Fleet" is a collection of "Spot Instances" and (optionally) "On-Demand Instances". Spot Fleet will try and match the target capacity with the price restraints, can be configured with multiple pools. You can block spot instances from terminating by using "Spot Block".
   
     - Dedicated Hosts
       - Compliance - Regulatory requirements that may not support multi-tenant virtualization.
@@ -191,87 +183,76 @@ EC2(Elastic Compute Cloud):
 
 
   EC2 Placement Group:
-    - Only certain types of instances can be launched in a placement group.
+    - Only certain types of instances can be launched in a placement group (e.g., compute optimized, GPU, memory optimized, storage optimized).
+    - AWS recommends homogenous instances within cluster placement groups.
     - Placement group merging is not allowed.
-    - To move a existing instance to placement group first the instance need to be in stopped state. Moving and removing instances using aws CLI or aws SDKs but available via console yet.
-    
-    There are 3 types of ec2 placement groups.
+    - To move a existing instance to placement group first the instance need to be in stopped state. Moving and removing instances using AWS CLI or AWS SDKs but not available via console yet.
 
-      - Cluster - Grouping of instances with a single availability zone. Recommended for applications that need low latency or high network throughput or both. Only certain instance types can be launched into a cluster palcement group.
+      - Cluster - Grouping of instances with a single availability zone. Recommended for applications that need low latency or high network throughput or both.
 
       - Spread - Spread placement group is a group of instances that each placed on distinct underlying hardware. Spread placement groups are recommended for applications that have small number of critical instances that should be kept separate from each other.
 
-      - Partition - Spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions.
+      - Partition - Spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions. e.g., Hbase, HDFS, Cassandra.
 
 
   vCenter and VMware:
-    - vCenter can be deplyed into aws cloud using VMware.
+    - vCenter can be deplyed into AWS cloud using VMware.
     - vCenter on AWS allows you to extend your private cloud to the AWS cloud.
 
   
   Outposts:
-    - extending aws into data center this is where outposts comes in.
-    - aws outposts racks for large deployment.
-    - aws servers for smaller deployments.
+    - extending AWS into data center this is where outposts comes in.
+    - AWS outposts racks for large deployment.
+    - AWS servers for smaller deployments.
 
 
 
-EBS(Elastic Block Store):
-  - Storage volumes that can attach to ec2 instances.
-  - Automatically replicated within a single availability zone to protect against hardware failure.
-  - Designed for mission critical data like production workloads.
-  - Dynamically increase capacity and change the volume type with no downtime or performance impact in live system.
+EBS (Elastic Block Store) & EFS (Elastic File System):
 
+  EBS Volume Types:
+    - Storage volumes that can attach to ec2 instances.
+    - Automatically replicated within a single availability zone to protect against hardware failure.
+    - Designed for mission critical data like production workloads.
+    - Dynamically increase capacity and change the volume type with no downtime or performance impact in live system.
 
-  Volume Types:
 
     - SSD(Solid State Disk):
 
-      - General Purpose SSD(gp2):
+      - General Purpose SSD (gp2):
         - 3 IOPS per GiB, upto maximum of 16,000 IOPS per volume.
         - gp2 volumes smaller than 1 TB can burst upto 3,000 IOPS.
         - Good for boot volumes, development and test applications that are not latency sensitive.
 
-      - General Purpose SSD(gp3):
+      - General Purpose SSD (gp3):
         - Predictable 3000 IOPS baseline performance and 125 MiB/s regardless of volume size.
         - Ideal for applications that require high performance at a low cost, such as MySQL, cassandra, virtual desktops and Hadoop analytics.
         - the performance of gp3 4 times faster than max throughput of gp2 volumens.
 
-      
-      - Provisioned IOPS SSD(io1):
-        - The high performance option and the most expensive.
-        - Upto 64,000 IOPS per volume.
-        - 50 IOPS per GiB.
+      - Provisioned IOPS SSD (io1):
+        - Suitable for latency sensitive and OLTP applications
+        - 50 IOPS per GiB and Upto 64,000 IOPS per volume.
         - Use case if there is need more than 16000 IOPS for both io1 and io2.
         - Designed for I/O-intensive applications, large database and latency sensitive workloads.
 
-      - Provisioned IOPS SSD(io2):
-        - Latest generation.
-        - higher durability and more IOPS.
-        - io2 is the same price as the io1.
-        - 500 IOPS per GiB, Upto 64,000 IOPS.
+      - Provisioned IOPS SSD (io2):
+        - Suitable for latency sensitive and OLTP applications
+        - 500 IOPS per GiB and Upto 64,000 IOPS per volume.
         - 99.999% durablity instead of 99.9%
-        - Designed for I/O-intensive applications, large database and latency sensitive workloads. Application that needs high durability.
 
 
-    - HDD(Hard Disk Drive):
+    - HDD (Hard Disk Drive):
 
-      - Throughput Optimized HDD(st1):
+      - Throughput Optimized HDD (st1):
         - Low cost HDD Volume.
-        - Baseline throughput of 40 MB/s per TB.
-        - Ability to burst upto 250 MB/s per TB.
         - Maximum throughput of 500 MB/s per volume.
         - Frequently accessed, throughput-intensive workloads.
-        - Big data, Data warehouse, ETL(Extract Transoform and Load) and log processsing. **
-        - A cost effective way to store mountains of data.
+        - Suitable for Big data, Data warehouse, ETL (Extract Transoform and Load) and log processsing. **
         - Cannot be a boot volume.
       
-      - Cold HDD(sc1):
-        - Baseline throughput of 12 MB/s per TB.
-        - Ability to burst upto 40 MB/s per TB.
+      - Cold HDD (sc1):
         - Maximum throughput of 250 MB/s per volume.
-        - A good choice for colder data requiring less scans per day.
-        - Good for applications that need lowest cost and performance not a factor.
+        - Less frequently access data. A good choice for colder data requiring less scans per day.
+        - This is the lowest cost volume.
         - Cannot be a boot volume.
 
 
@@ -279,19 +260,17 @@ EBS(Elastic Block Store):
     - Volumes exist on EBS where Snapshots exist on S3.
     - Snapshots are point-in-time photographs of the volumes and are incremental in nature.
     - Fisrt snapshot will take some time to create. For consistent snapshot, stop the instance and detach the volume.
-    - Snapshots can be shared between aws accounts as well as between regions, but first it needs to be copied in target region.
+    - Snapshots can be shared between AWS accounts as well as between regions, but first it needs to be copied in target region.
     - EBS volumes can be resized in the fly as well as changing of the volume types.
 
 
-    EBS Volumes:
-      - EBS volumes always will be at the same AZ as the EC2 instance to which it is attached.
-      - EBS volumes can be resized on the fly. There is no need to stop or restart the instance. However, filesystem needed to be extended on the OS level so OS can see the resized volume.
-      - Volume types can be changed on the fly (e.g., from gp2 to io2). There is no need to stop or restart the instance.
+  AMIs EBS vs Instance Store:
+    - Instance store volumes are sometimes called ephemeral storage.
+    - Both EBS volume and instance store can be rebooted without losing data.
+    - Instance store cannot be stopped, if the underlying hardware fails then the data will be lost.
+    - By default, both root volumes will be deleted on termination. However, with EBS volume there is a option to tell AWS to keeps the volume after instance termination.
+    - An AMI is just a blueprint for EC2 instance.
 
-    Snapshots:
-      - Snapshot only captures data that has been written to EBS volume, which might exclude any data that has locally cached by application or the OS. For a consistent snapshot, it is recommended to stop the instance and take a snap.
-      - Snapshot of a encrypted EBS volume will be encrypted automatically.
-      - Snapshots can be shared only in the region which they were created. To share in other regions, snapshots need to copy in other regions first.
 
 
   Volume Encryption:
@@ -310,7 +289,7 @@ EBS(Elastic Block Store):
 
 
   EC2 Hibernation:
-    - Preserves the in-memory(RAM) on persistent storage(EBS).
+    - Preserves the in-memory (RAM) data on persistent storage (EBS).
     - Much faster in boot up because there is no need to reload the operating system.
     - Instance RAM must be less than 150 GB.
     - Instance families include C3, C4, C5, M3, M4, M5, R3, R4 and R5 (CMR Group).
@@ -330,35 +309,21 @@ EBS(Elastic Block Store):
 
 
   FSx:
+    - Centralized storage solution across multiple AZs for Windows as well as for Linux.
 
     EFS:
       - Distributed, highly resilient storage for linux instances and linux-based application.
 
     Amazon FSx for Windows:
-      - Centralized storage for windows-based application, such as Sharepoint, Microsoft SQL Server, Workspaces, IIS Web Server or any other native Microsoft application.
+      - Centralized storage for windows-based application, such as Active Directory, Sharepoint, Microsoft SQL Server, Workspaces, IIS Web Server or any other native Microsoft application.
 
     Amazon FSx for Lustre:
-      - High-speed, high-capacity distributed storage. This wil be for application that do high performance computing(HPC), financial modeling etc. FSx for lustre can store data directly on S3.
+      - High-speed, high-capacity distributed storage. This will be for application that do high performance computing (HPC), financial modeling etc. FSx for lustre can store data directly on S3.
 
 
-  AMIs:
-    EBS vs Instance Store:
-      - Instance Store volumes are sometimes called ephemeral storage.
-      - Instance Store volume cannot be stopped. If the underlying host/hardware fails data will be lost.
-      - EBS-backed instances can be stopped. Data will not lose in the stopped state.
-      - EBS and Instance Store both can be rebooted without losing data.
-      - By default, root volume will be deleted. However, with EBS volumes, it can be configured to keep the root device volume.
-      - An AMI is just a blueprint for ec2 instance.
-
-  AWS Backup:
-    
-    Consolidation:
-      - Use AWS Backup to backup aws services, such as EC2, EBS, EFS, FSx for Lustre, FSx for windows file server and Storage Gateway.
-    
-    Organisation:
-      - AWS Organisation can be conjunctioned with AWS Backup to backup different aws services across multiple aws accounts.
-
-    Benifits:
+  AWS Backup: 
+      - Use AWS Backup to backup AWS services, such as EC2, EBS, EFS, FSx for Lustre, FSx for windows file server and Storage Gateway.
+      - AWS Organisation can be conjunctioned with AWS Backup to backup different AWS services across multiple AWS accounts.
       - Backup gives centralized control, by automating backups and defining life cycle policies for data. To get better compliance, enforcing backup policies, ensuring backups are encrypted and audit them once they are completed.
 
 
@@ -373,7 +338,7 @@ Databases:
     Multi-AZ:
       - An exact copy of production database in another Availability Zone.
       - Used for disaster recovery.
-      - In the event of a failure, RDS will automatically fail over to the stand by instance.
+      - In the event of a failure, RDS will automatically failover to the stand by instance.
 
     Read Replica:
       - A read only copy of the primary database in the same AZ, cross-AZ or cross-region.
@@ -473,6 +438,7 @@ VPC:
 
 
     VPC Endpoints:
+      - AWS VPC (Virtual Private Cloud) endpoints allow you to privately connect your Amazon Virtual Private Cloud to other AWS services without requiring internet access. They provide secure and efficient communication between your VPC and AWS services, improving security, performance, and compliance.
       - Use cases will be AWS services without leaving the amazon internal network.
       - 2 types of VPC Endpoints, interface endpoints and gateway endpoints.
       - Gateways endpoints only supports S3 and DynamoDB.
@@ -503,7 +469,7 @@ VPC:
 
 
     Transit Gateway:
-      - Route tables can be use to limit how VPCs talk one to another.
+      - In use of Transit Gateway route tables can be use to limit how VPCs talk one to another.
       - Works with Direct Connect as well as VPN connections.
       - Supports IP multicast (not supported by any other AWS services).
 
@@ -513,3 +479,590 @@ VPC:
 
 
     
+Route 53:
+  - Understand the difference between an alias and a CName record. Given the choice alwasy choose alias record over CName.
+  - Commond DNS record types - SOA record, CName record, NS record, A record.
+  - Domain names can be bought directly with AWS. It can take upto 3 days to register depending on the circumstances.
+  - 7 available routing policies with Route 53. Simple, Weighted, Failover, Geolocation, Geoproximity, Latency and Multivalue Routing Policy.
+
+
+  Health Checks:
+    - Health checks can be attached with individual record sets.
+    - If a record set fails health check, it will be removed from Route 53 untill it passes the health check.
+    - SNS notification can be applied to alert about failed health checks.
+
+  
+  Simple Routing Policy:
+    - With simple routing policy, one record with multiple IP addresses. If multiple values are specified in the record, Route 53 returns all values to the user in a random order.
+  
+
+  Weighted Routing Policy:
+    - Certain amount of traffic into a individual region with percent, that is where weighted routing policy comes in.
+
+
+  Latency Routing Policy:
+    - Depending on the latency on client-server user will send to the lowest latency region.
+
+
+  Failover Routing Policy:
+    - If active site fails then Route 53 automaticlly sends user to the passive site.
+
+
+  Geolocation routing policy:
+    - Route traffic based on the location of the users. Geolocation routing sends clients to the specific region.
+
+
+  Geoproximity routing policy:
+    - Lets Route 53 traffic route to resources based on the geographic location of the users and resources.
+    - Optionally choose to route more traffic or less to a given resource by specifying a value, knows as a bias.
+    - To use geoproximity routing, will have to use route 53 "tarffic flow".
+
+
+  Multivalue answer routing policy:
+    - Mutltiple records with multiple IP addresses with health check option. redirects users to healthy location if any location is unhealthy.
+
+
+
+Elastic Load Balancers:
+
+  Application Load Balancers (Network Layer 7):
+    - A listener checks for connection requests from clients, using the protocol and port that are configured.
+    - Rules determine how the load balancer routes the requests to its registered targets. Each rule consists of a priority, one or more actions and one or more conditions.
+    - Each target group routes requests to one or more registered targets, such as ec2 instances, using the protocol and port number as specified.
+    - Application load balancer only support HTTP and HTTPS.
+    - to use HTTPS there must be one SSL/TLS server certificate on the load balancer. The load balancer uses server certificate to terminate the frontend connection and decrypt requests from the clients before sending them to the targets.
+
+
+    Network Load Balancers (Network Layer 4):
+      - Use cases, where need extreme performance.
+      - Needed where protocols are not supported by Application Load Balancers.
+      - Network Load Balancers can decrypt traffic by installing the certificate on the server.
+
+
+    Classic Load Balancers (Network Layer 4/7):
+      - 504 error means the gateway has timed out. The application is not responding within the idle timeout period. Basically the web server or the database server is down.
+      - To check the clients IPv4 address use case X-Forwarded-For header.
+
+      
+    Sticky Sessions:
+      - Sticky sessions enable user to stick the same ec2 instance. Can be useful if storing data locally to that instance. Disable sticky session if that specific instance is removed from the pool.
+      - Sticky sessions can be used in Application Load Balancers but the traffic will be sent at the target group level.
+
+
+    Deregistration Delay/Connection Draining:
+      - Enabled Deregistratin delay keep existing connection open if the ec2 instance become unhealthy.
+      - Disable Deregistration Delay if the connection needs to close immediately to the instances that are de-registered or become unhealthy.
+
+
+
+Monitoring:
+
+  CloudWatch:
+    - CloudWatch is the main tool for anything alarm related.
+    - Not everything go through CloudWatch but AWS standard should be watched by AWS config.
+    - Standard metric is delivered every five minutes, while detail monitoring delivers data every one minute.
+
+
+  Application Monitoring with CloudWatch Logs:
+    - CloudWatch logs is the place for application logs. EC2, On-Premises, Lambda, RDS and CloudTrail all integrate with this service.
+    - SQL query on logs goes to CloudWatch Logs Insights.
+    - Realtime logs means Kinesis over CloudWatch.
+
+
+  Visualizing Data and Monitoring at Scale:
+    - Grafana might be best for visualization of container metrics. AWS managed service for correlation and visualization of container of IoT metrics, this might be best option.
+    - Monitoring container metrics at scale? The amazon managed service for Prometheus. Leverage this service for any Kubernetes-based metrics monitoring at scale. It can be amazon EKS cluster or self-managed cluster.
+    - Grafan and Prometheus both are AWS managed service. AWS handles scaling and high availability for the user.
+
+
+
+High Availability and Scaling:
+
+  High Availability:
+    - Always keep in mind the highly available option for AWS services.
+    - Appropriate situation for horizontal and vertical scaling.
+    - Consider cost effectiveness.
+    - Switching database in AWS is more easier than on-premise.
+
+
+  Auto Scaling:
+    - Auto Scaling group is only for EC2. Other services might have built-in option. But they aren't included in Auto Scaling Groups.
+    - Get ahead of the workload. Whenever possible picking the solution as predictive rather than reactive.
+    - Bake AMIs to reduce build times. To avoid long provisioning times by putting everything in an AMI. This is better than using user data, whenever possible.
+    - Spread out. Making sure that auto scaling groups are spreaded out over multiple availabilty zones.
+    - steady state groups allow to create a situation where the failure of a legacy codebase or resource that can not be scaled can automatically recover from failure.
+    - Elastic Load Balancers are essential for auto scaling groups. Making sure that health checks are on, otherwise instances won't be terminated or replaced when they fail health checks.
+
+
+    Database Scaling:
+      - RDS has the most database scaling options.
+      - Horizontal scaling is usually preferred over vertical.
+      - RDS databases scales horizontally using the read replicas.
+      - Dynamo DB scaling comes down to accesss patterns.
+      
+
+
+Decoupling Workflows:
+
+  Amazon SQS:
+    - SQS can duplicate messages. It is once in a while. So, if it is happening consistently, check for a misconfigured visibility timeout or if the developer failing to make the delete API call.
+    - Queues aren't bi-directional. If there is need to return communication to the instance that sent message, then there is need a second queue.
+    - Understanding the default values in SQS settings.
+    - Messages stored in SQS only persist up to 14 days.
+    - If message ordering is important then select SQS FIFO over the Standard.
+
+
+    Amazon SNS and API Gateway:
+      - Email, text or any type of push-based notification that goes with  SNS service.
+      - CloudWatch alarm is a good option for SNS.
+      - Amazon API Gateway is a secure front door to external communication coming into the environment.
+
+
+    AWS Batch:
+      - Batch workloads that is long-running > 15 minutes will be use case for AWS Batch.
+      - Workloads that are requiring queues, use case is AWS Batch.
+      - Alternative solutions for AWS lambda due to runtime requirements in that case AWS Batch is the suite.
+
+    
+    Amazon MQ:
+      - If there is require for managed broker service. Use case will be Amazon MQ.
+      - Rabbit MQ and Active MQ these two technologies goes with amazon MQ.
+      - Message protocols like JMS, AMQP 0-9-1, AMQP 1.0, MQTT, OpenWire or STOMP also goes with amazon MQ. SNS and SQS can not handle these message protocols.
+
+
+    AWS Step Functions:
+      - Serverless orchestration service will involve AWS Step Functions.
+      - Whenever solutions requires different states or logic during workflows like condition checks, failure catches or specially wait periods then the use case will be AWS Step Functions.
+
+
+    Amazon AppFlow:
+      - For architectures requiring simplified data ingestion from external SaaS applications into AWS, this is where amazon AppFlow comes in.
+      - Amazon AppFlow can be Bi-directional in some use cases. Data can be ingested in or out of AWS services depending on the configurations.
+
+
+
+Big Data:
+
+  Redshift and EMR:
+    - While Redshift is a relational database, It's not a replacement for RDS in traditional application.
+    - Redshift only support single-AZ deployments. Multiple clusters can be deployed in different AZs, but technically they are separate deployments. It's not highly available by default.
+    - EMR is made up of EC2 instances. This can employed with standard EC2 instance cost-saving measures.
+
+
+  Kinesis, Athena and Glue:
+    - Kinesis is the only service with a real time response, solutions to processing or moving data.
+    - SQS and Kinesis both can be Queues. SQS is easier and simpler and, Kinesis is faster and can store data up to a year.
+    - Serverless SQL means Athena. Quering data from S3 using SQL that is what Athena is.
+    - Glue is serverless ETL. It can help create Schema for data when paired with Athena.
+
+
+  QickSight OpenSearch or ElasticSearch:
+    - QuickSight is go-to tool for creating dashboard for visualizing data.
+    - OpenSearch is primarily used for analyzing log files and various documents, specially within an ETL process.
+    - Amazon OpenSearch and Amazon ElasticSearch are the same service.
+
+
+  Data Pipeline:
+    - It is a managed ETL service within AWS.
+    - Implement automated workflows for movement and transformation of data.
+    - It integrates with storage services (e.g., RDS, S3) and compute service (e.g., EC2, EMR).
+    - Data driven and task-independent workloads are a perfect use case.
+
+  
+  Amazon Managed Streaming for Apache Kafka (MSK):
+    - It is an AWS managed service for building and running Apache Kafka streaming applications
+    - This service handles control plane operations (creating, updating and deleting).
+    - User has to manage data plane operations.
+    - It pushes broker logs to CloudWatch, S3 or Kinesis Data Firehose.
+    - API calls are logged to CloudTrail.
+
+
+
+Serverless Architecture:
+  
+  AWS Lambda:
+    - Talking about credentials and lambda, ensure to attaching role to the function.
+    - S3, Kinesis, EventBridge (CloudWatch Events) are commonly can trigger a lambda function.
+    - Can be allocated with max 10GB RAM and 15 minutes of runtime.
+    - Any AWS API call can be a trigger to kick off EventBridge/CloudWatch Events rule to perform AWS lambda, which can even trigger any EventBridge rule. This is faster than trying to scrape from CloudTrail.
+
+
+  Container and Images:
+    - Container management solution that runs in AWS and on-premise consider amazon EKS or EKS Anywhere.
+    - Fargate can't work alone. In order to use fargate there must be use of ECS or EKS. Fargate is not a service by itself.
+    - Containers are flexible. Containers can encompass just about any workload. Generally, it's preferred to use containers rather than EC2 on the exam.
+    - Container starts with a Dockerfile, build an image, upload it to a repo, and then run it on a host.
+    - Amazon ECR is the AWS-managed image registry. When AWS service needed for image storage or image vulnerability scanning.
+
+
+  Amazon Aurora Serverless:
+    - It is a on-demand or auto scaling database.
+    - Good for variable traffic or unknown workloads.
+    - Capacity planning for a new application with a database or development environment or a existing one. Use case will be Amazon Aurora Serverless.
+
+  
+  AWS X-Ray:
+    - Used to gain application insights using requests and responses of services and functions at different point in a application flow.
+    - Traces and downstream response times are use case of AWS X-Ray.
+    - AWS X-Ray natively integrates with AWS Lambda or Amazon API Gateway insights and help understanding deeper insights of the workload requests and responses.
+
+
+  AWS AppSync:
+    - It is a AWS managed GraphQL interface for any frontend application or developer.
+
+
+
+Security:
+
+  DDoS:
+    - A Distributed Denial of Service attack attemps to make webiste or application unavailable to end users.
+    - Commond DDoS Layer 4 attacks are SYN floods or NTP amplification attacks.
+    - Commond Layer 7 attacks include floods to GET/POST requests.
+
+
+  CloudTrail:
+    - CloudTrail is the CCTV for a AWS account. It logs API calls made to AWS account and stores in S3.
+
+  
+  Shield:
+    - Shield protects against layer 3 and layer 4 DDoS attacks only.
+    - Advance Shield costs 3000 USD per month. But it give dedicated 24/7 DDoS response team. 
+
+
+  WAF:
+    - WAF (Web Application Firewall) protects against layer 7 DDoS attacks as well as SQL injections and cross-site scripting.
+    - Blocking specific countries or IPs can be achieved by AWS WAF.
+
+
+  Firewall Manager:
+    - Multiple AWS accounts and resources that need to be secured centrally.
+
+  
+  GuardDuty:
+    - Uses AI to learn what normal behavior looks like in AWS account and alerts any abnormal or malicious behavior.
+    - Updates a database of knows malicious domains using external feeds from third parties.
+    - Monitors CloudTrail logs, VPC Flow logs and DNS logs.
+    - Findings appear in GuardDuty dashboard. Amazon EventBridge can be use to trigger a Lambda function to address a threat.
+
+
+  Macie:
+    - Macie uses AI to analyze data in S3 and helps identify PII, PHI, and financial data.
+    - Great for HIPPA and GDPR compliance as well as preventing identity theft.
+    - Macie alerts can be sent to Amazon EventBridge and integrate with event management systems.
+    - Automate remediation actions using other AWS services, such as Step Functions.
+
+
+  Inspector:
+    - It use to perform vulnerability scans on both EC2 instances and VPCs.
+    - These are called host assessments on EC2 and network assessments on VPCs.
+    - Assessments can be run once, or alternatively weekly.
+
+  
+  KMS and CloudHSM:
+    
+    AWS KMS:
+      - KMS is a managed service, makes it easy to create and control encryption keys that is use to encrypt data.
+      - The service starts by requesting creation of CMK. Users control the lifecyle of the CMK as well as who can use or manage it.
+      - Shared tenancy of underlying hardware.
+      - Has ability to automatic key rotation.
+      - Automatic key generation.
+      
+      CMK:
+        - 3 ways to generate CMKs. AWS creates the CMK for the user. The key material for a CMK is generated within hardware security modules (HSMs) managed by AWS KMS.
+        - Import key material from user, own key management infraustructure and associate with a CMK.
+        - Key material generated and used in an AWS CloudHSM cluster as the custom key store feature in AWS KMS.
+
+      Permissions:
+        - Use the key policy. Controlling access this way means the full scope of access to the CMK is define in a single document (the key policy).
+        - Use IAM policies combination with key policies. Controlling access this way enables to manage all the permissions for IAM identities in IAM.
+        - Use grants in combination with the key policy. Controlling access this way enables to access to the CMK in the key policy, as well as users to delegate their access to others.
+
+    CloudHSM:
+      - It is a dedicated HSM.
+      - Full control over underlying hardware.
+      - Full control of users, groups, keys.
+      - No automatic key rotation.
+
+
+  Secrets Manager:
+    - Secrets manager are used for storing application secrets such as database credentials, API keys, SSH keys, passwords etc.
+    - Applications use the secret manager API.
+    - Rotating credentials is easy but when enabled secrets manager will rotate credentials immediately.
+    - Making sure that all the application are configured to use secrets manager before enabling credential rotation.
+
+
+  Parameter Store:
+    - For minimizing cost choose Parameter Store over Secrets Manager.
+    - If there is need more than 10,000 parameters, key rotation or ability to generate passwords using CloudFormation then use case will be Secrets Manager.
+
+
+  Presigned URLs:
+    - Use to share files from private bucket in S3.
+
+  
+  Advanced IAM Policies:
+    - Not explicitly allowed == implicitly denied.
+    - Explicitly deny > everything else.
+    - Only attach policies has effect.
+    - AWS joins all applicable polices and Explicitly deny always wins.
+    - Policies are AWS managed and customer managed.
+
+  
+  AWS Certificate Manager:
+    - AWS Certificate Manager integrates with Elastic Load Balancing, CloudFront and API Gateway.
+    - AWS Certificates Manager is free service that saves money and time. Automatically renews new SSL certificates and rotate the old certificates with supported AWS services.
+
+
+  Audit Manager:
+    - Continuous audting or automating auditing reports about HIPAA or GDPR compliance.
+
+
+  Artifact:
+    - Used for audit of the compliance report.
+
+  
+  Cognito:
+    - User pool is a directories that provides sign-up and sign-in features of application.
+    - Identity pool allows users to access other AWS services.
+    - Identity pool and Users pool can be used seperately or together.
+
+
+  Amazon Detective:
+    - Amazon Detective operates accross multiple AWS services and analyze the root cause of an event.
+
+  
+  Network Firewall:
+    - Filtering network traffic before it reaches to internet gateway or requires intrusion prevention systems or any hardware firewall requirements.
+
+
+  Security Hub:
+    - Single place to view all security alerts across multiple AWS security services and AWS accounts.
+
+
+
+Automation:
+  
+  CloudFormation:
+    - CloudFormation is an infrastructure as code (IaC) service that allows you to define and manage AWS resources and infrastructure using templates written in JSON or YAML format.
+    - CloudFormation enables to automate the creation, modification, and deletion of AWS infrastructure in a repeatable and consistent manner.
+    - Mapping and Parameter Store are useful to help make templates more flexible. Hardcoded IDs (e.g., AMI or Snapshot ID) are a source of breakage.
+
+
+  Elastic Beanstalk:
+    - Elastic Beanstalk is a Platform as a Service (PaaS) that simplifies the deployment and management of applications. It abstracts the underlying infrastructure and handles the provisioning and configuration of resources automatically.
+
+
+  Systems Manager:
+    - Automation documents are the primary use case of configure the inside of EC2 instances.
+
+    
+
+Caching:
+
+  CloudFront:
+    - CloudFront is the only option to add HTTPS to a static website being hosted in an S3 bucket.
+
+  
+  Global Accelerator:
+    - Reduce issues with customers caching old IP addresses.
+
+
+  Database Caching:
+    - In-memory database solutions are 2 cases either DynamoDB or Redis. DynamoDB is the preferred solution.
+    - Redis has more features than Memcached. It can be used as a cache or as a persistent data store, where Memcache is just cache.
+    - Backups are only supported in Redis. Memcached and DAX do not support backups.
+    
+
+
+Governance:
+
+  Organizations:
+    - Service Control Policies (SCPs) has the ultimate say as to whether an API call goes through. They are the only way to restrict what root account can do.
+    - Centralized logs are always the right answer. CloudTrail offers support to log everything into a single AWS account.
+    - Isolating workloads into separate account is a great way to add more layers of security and controls. Avoid answers that lump everything together.
+
+
+    AWS Config:
+      - Standardization, Any time a "rule" need to be set up for an account, using Config to check for the compliance.
+      - Automate the Response, Config offers automatically remidiate problems using Automation documents or triggering a Lambda function.
+      - Know What Changed, Config is the one-stop-shop to see what changed. It will provide a history of all of the architecture.
+
+
+    Authentication:
+      - User management requires right tool. AWS SSO/IAM Identity Center for internal user management and Cognito for external user management.
+      - Active Directory is a Microsofts Directory service. If it is in the cloud then use case is Managed Microsoft AD. For on-premise AD's use case will be AD Connector.
+      - Cross-account Role access is always better solution than creating unnecessary IAM credentials.
+
+
+    AWS Cost Management:
+      - AWS Cost Management best practice is to using combination of Cost Explorer, AWS Budgets and tags.
+      - Get ahead of problems by creating proactive alerts. When users get to the 80% threshold, telling someone via SNS.
+      - Automating the response. Spending too much money? Shutting down some services. Always deciding how to remove the human interaction.
+      - Detailed reports and exploring costs. This questions will usually involve AWS Cost and Usage Reports or Cost Explorer for in-depth reporting purposes.
+      - Use AWS Compute Optimizer to generate recommendation on implementing more accurate compute sizes based on actual needs.
+
+
+    Trusted Advisor:
+      - It's free but need a business or enterprise support plan to get most useful checks.
+      - There are limits to trusted advisor. It's strictly auditing tool and it will not solve the problems by itself.
+      - Autmote the response. Using EventBridge to kick off a lambda function to solve the problem.
+
+
+    Account and Licenses:
+      - AWS Control Tower can be use to implement compliance and account governance within multi-account environments using automated account setup.
+      - Leverage Preventive and Detective guardrails within AWS Control Tower. They are implemented via SCPs and AWS Config respectively.
+      - AWS License Manager provides a simplified way to manage licenses from supported vendors to prevent license abuse and overcharges. It works on AWS and on-premises.
+
+
+    Infrastructure and Deployments:
+      - AWS Service Catalog allows end users to provision pre-approved products and services via shared catalog portfolios. These catalogs are written in CloudFormation.
+      - AWS Proton can empower developers to automate the provisioning of their entire application stack for container-based or serverless architecture.
+
+
+    AWS Well-Architected Tool:
+      - Use case of AWS Well-Architected Tool to document architectural decisions and their measurements against well-stablished AWS industry  best practices.
+
+
+    AWS Health:
+      - AWS Health is a dashboard and service meant to provide notifications of both public and account-specific events within AWS.
+      - Questions about service alerts or notifications of EC2 hardware maintainance reboots will leverage AWS Health in some manner. Can be automated with EvenBridge and kick-off lambda functions.
+
+
+
+Migration:
+
+  Migrating Data with AWS Snow Family:
+    - Snowballs are perfect for moving many terabytes of data. Best use case of Snowball, where internet connection is slow also it is more secure.
+
+
+  Storage Gateway:
+    - Hybrid solution or on-premise storage will involve Storage Gateway.
+    - Out of space in local-network attached storgae, File Gateway will be perfect solution for that.
+    - Basically it's a VM which runs locally on-premises.
+
+
+  DataSync and Transfer Family:
+    - DataSync is a agent-based solution that excels at one-time migrations of file shares into AWS.
+    - EFS and FSx are both viable locations for DataSync to transfer content into.
+    - Transfer Family allows to use legacy file transfer protocols to give older applications the ability to read and write from S3.
+
+
+  Migration Hub:
+    - Migration Hub is a organizational tool which allows to organize all steps. Needs other tools to complete the migration though.
+    - Database Migration Service is go-to tool for any sort of database migration. It works for on-premise to cloud, or moving data between different RDS databases.
+    - Server Migration Service is a tool to migrate VMs data center to AWS.
+
+
+  Application Discovery Service:
+    - Quickly migrate entire application to the AWS.
+    - Agentless discovery can be used via OVA file deployment to vSphere.
+    - Agent-based discovery collects detailed information of VMs on both Linux and Windows OS.
+
+
+  Application Migration Service (MGN):
+    - Automated lift-and-shift service for migrating infrastructure to AWS.
+    - Replicates source servers (e.g., VM, Physical, or Azure VM) into AWS for non-disruptive cutovers.
+    - Recover Time Objectives (RTO) is minutes, Recovery Point Objective (RPO) is sub-second.
+
+
+
+Front-End and Mobile:
+
+  AWS Amplify:
+    - Tools for simplified front-end web and mobile development.
+    - Fullstack application hosted on AWS.
+    - Enable developers to focus on coding not the infrastructure.
+    - Supports frameworks like React, Angular, Vue; also static site generator Gatsby and Hugo.
+    - Amplify support server side rendering like Next.js while S3 cannot perform static site generating.
+
+  
+  Device Farm:
+    - Automated or manual testing on physical, real phones or tablets use case will be Device Farm. Can be used with Android, IOS or other web applications.
+
+
+  Amazon Pinpoint:
+    - It enables to engage with customers with a large or small scale.
+    - Pinpoint is geared toward marketing teams, business users, and sometime developers too.
+    - Segments allow for targeted messages and audiences.
+    - Leverage machine learning models to predict future engagements.
+
+
+
+Machine Learning:
+
+  Amazon Comprehend:
+    - Amazon Comprehend is a natural language processing (NLP) service that uses machine learning to find insights and relationships in text.
+    - Sentiment analysis, like someone is talking bad or good thing in social media.
+    - Uses for index and search product reviews.
+    - Legal brief management.
+    - Process of financial documents.
+
+
+  Amazon Kendra:
+    - Uses Machine Learning to build a intelligent search service to find unstructured text documents.
+
+  
+  Textract:
+    - Use Textract to convert text, handwriting and data scanned documents to text.
+
+
+  Amazon Forecast:
+    - Analyze time-series data and make predictions based on that analysis, use case will be Amazon Forecast.
+
+
+  Amazon Fraud Detector:
+    - Fraud detection machine learning model that is highly customized based on provided data.
+
+
+  Transcribe:
+    - Transcribe uses machine learning to convert video and audio to text (e.g., generate closed captioning).
+
+
+  Amazon Lex:
+    - Building online chat bots use case will be Amazon Lex. This is the service that powers behind A-Lex-a.
+
+
+  Amazon Polly:
+    - Amazon Polly converts text to speech in multiple languages.
+
+
+  Amazon Rekognition:
+    - Content moderation using AI/ML, use case will be Amazon Rekognition. Deep learning-based visual analysis service. Search, verify, and organize millions of images and videos.
+
+
+  Amazon SageMaker:
+    - Ground Truth - Setup and manage labeling jobs for training datasets using active learning and human modeling.
+    - Notebook - Access a managed Jupyter Notebook environment.
+    - Training - Train and tune models.
+    - Inference - package and deploy machine learning model at scale.
+
+    Create Model:
+      - This is the place which will provide predictions for the endpoint.
+
+    Create an Endpoint Configuration:
+      - This is where to specify the model to use, inference instance type, instance count, variant name, and weight.
+      - This can sometimes be called a production variant.
+
+    Create an Endpoint:
+      - This is where the model is published, and can be invoke the model using InvokeEndpoint() methdo.
+
+    Amazon SageMaker Neo:
+      - Building custom algorithm using Tensorflow or Pytorch then upload it to Amazon SageMaker Neo to get optimized binary architecture.
+
+    - Elastic Inference to optimize cost using CPU based instance rather than GPU based instance.
+    - SageMaker supports automatic scaling and high availability.
+    
+
+  Translate:
+    - Translating from one language to another using deep learning/neural networks, that's what Translate do.
+
+
+
+Media:
+
+  Elastic Transcoder:
+    - Converting media files into an optimized format of a particular device, use case will be Elastic Transcode.
+
+  
+  Kinesis Video Stream:
+    - Video streaming at scale from millions of devices (e.g., Ring), use case will be Kinesis Vidoe Stream.

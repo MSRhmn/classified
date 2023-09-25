@@ -1,21 +1,26 @@
 # aws CLI Commands
 
-aws:
-  - aws configure # to setup aws iam user.
-
-
 iam:
+  - aws configure # to setup aws iam user.
   - aws iam list-users # shows all the users in account.
 
 
 s3:
   - aws s3 ls # listing s3 buckets in aws account.
-  - aws s3 mb s3://bucket_name --region <region_name>
-  - aws s3 rb s3://bucket_name --force
-  - aws s3 cp file.ext s3://bucket_name
+  - aws s3 mb s3://bucket-name --region <region_name>
+  - aws s3 rb s3://bucket-name --force
+  - aws s3 cp file.ext s3://bucket-name
+  - aws s3 cp file.ext s3://bucket-name/prefix/ --acl public-read --profile <profile_name> --region <region_name> # to upload files in s3 using canned acl to access public read in the object.
+  - aws s3 presign s3://bucket-name/file.name --expires-in 3600 #presigning a URL in private bucket for a limited time.
 
 
 ec2:
   - ssh ec2-user@ip/host_address -i <ssh-private-key> # "-i" flag identifys the private key if the key hasn't added to ssh-agent. 
   - curl http://169.254.169.254/latest/meta-data # meta data query
   - curl http://169.254.169.254/latest/user-data # user data query
+
+
+cloudwatch:
+  - sudo yum install amazon-cloudwatch-agent # installing cloudwatch unified agent on amazon linux 2 machine.
+  - sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard # configuring cloudwatch agent wizard.
+  - sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json # starting the cloudwatch agent.
