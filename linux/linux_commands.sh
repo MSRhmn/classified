@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # A shell is a command interpreter that exposes to the user an interface to work with the underlying operating system.
-# Marking anything in terminal window with mouse and then clicking middle button will paste.
+
 
 # System information
 
@@ -9,7 +9,9 @@ lsb_release -a # shows information about your distribution.
 uname -r # to check the kernel info.
 whoami # checking the user.
 hostname # checking the host you are logged in.
-
+who # check users who are currently logged in.
+lastlog -u username # to check last login for security purpose.
+uptime # checking the systems uptime.
 
 # Tree Navigation
 
@@ -24,6 +26,10 @@ cd /
 cd ..
 ls
 ls -lahi # "-i" stands for inode, which is metadata about the data.
+pushd <dir_name>  # login into new session without exiting previous session.
+popd  # exiting out from a newly created session.
+ls -al > <file_name>  # transmitting data into a new file. ***
+ls -al >> <file_name>  # updating a file with new transmitted data. ***
 
 
 # File/Directory Manipulation
@@ -42,14 +48,14 @@ ln -s </file/dir_location> <link_location> # creating symbolic links for files o
 
 # Reading/Editing Files
 
-cat
+cat > <file_name>  # creating files from the command line.
+cat <file_name> <file_name2> | less  # reading multiple files together.
+less
+tail -f <file_name> # reads file with any current update with in the file.
 nano
 vim
-less
-more
-tail -f <file_name> # reads file with any current update with in the file.
 
-# The find command
+  # The find command
 
   find . # finds all of the files and folders of current directory.
   find . -type df -(i)name 'directory name | filename* | *.ext' # reads all the directories and files, specific with name or extension name, (i) is for case insensitive option.
@@ -61,7 +67,7 @@ tail -f <file_name> # reads file with any current update with in the file.
 
 # Users and Groups
 
-sudo # suer users do, sudoers permission.
+sudo # super users do, sudoers permission.
 sudo -s # to become root. "-s" stands for set.
 sudo su # god mode, switching users without loging out from current session.
 useradd -m <user_name> # to add a new user and creating home directory. It also creates a new group for the user.
@@ -107,27 +113,7 @@ man
 history
 history -c # clears history only for the current session.
 history | less
-ls -al > lsout.txt  # to put all the directory information in a file. ***
-
-
-# Secure Shell
-
-# "ssh" is the client, "sshd" is the server.
-# "ssh_config" is the client configuration file
-# "sshd_config" The daemon configuration file
-# "ssh-agent" An authentication agent that can store private keys.
-
-ssh-keygen -t ed25519 -C "username@email.com" # ID name ed25519 can be configurable. "-t" stands for type of the key and -C" stands for comment.
-eval "$(ssh-agent -s)" # Evaluating ssh-agent by running this command.
-ssh-add ~/.ssh/id_ed25519 # Adding generated key to ssh-agent. Use only "ssh-add" to all generated key to ssh-agent. Only if there is multiple keys generated manually named.
-cat ~/.ssh/id_ed25519.pub # To check the public key and set into the server.
-openssh-server # install it on machine to use that machine over ssh.
-ssh <user@ip/host> # to ssh into a system.
-ssh -X <user@ip/host> # for X11 server based app use.
-scp file_name host_ip:/path/file_name # secure copy files via ssh.
-
-lastlog -u username # to check last login for security purpose.
-who # check users who are currently logged in.
+ctrl + r  # to serach recent commands.
 
 
 # Z Shell
@@ -136,4 +122,3 @@ cd ...  # as much as dot to go backward.
 command and hit tab twice #using arrow keys to navigate specific directory.
 take <dir_name> # create a directory and jump inside it.
 command hit up arrow # to get specific command that already typed.
-ctrl + r  # to serach recent commands.
