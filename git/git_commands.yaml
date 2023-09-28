@@ -1,8 +1,8 @@
 # Git Documentation
 
 configuration:
-  - git config --global user.name "full_name"
-  - git config --global user.email "username@email.com"
+  - git config --global user.name <full_name>
+  - git config --global user.email <username@email.com>
   - git config --global init.defaultBranch <branch_name>
   - git config --list # checking the configuration file.
   - git <command> --help
@@ -10,18 +10,24 @@ configuration:
 
 tracking:
   - git init # intializing git repository.
-  - touch .gitignore # creating ".gitignore" file and put file names in there you don't want to be tracked.
-  - git rm --cached <file_name> # ignoring a previously committed file, then adding it in the .gitignore file.
-  - git add -A # adding all the files to the staging area, doesn't matter which dir you are on the repo.
-  - git reset <filename> # Removing files from staging area. "git reset" with no command will remove every files that are in staging area.
-  - git diff # shows defference between previous and new change to the files that hasn't commited or added to staging area.
-  - git commit -m <message> # commiting files to the git repository.
   - git status # Checking the status of files in local and remote.
+  - touch .gitignore # creating ".gitignore" file and put file names in there you don't want to be tracked.
+  - git add -A # adding all the files to the staging area, doesn't matter which dir you are on the repo.
+  - git restore --staged <filename> # Removing files from staging area.
+  - git commit -m <message> # commiting files to the git repository.
+  - git rm --cached <file_name> # ignoring a previously committed file.
   - git log # Checking the previous commits with commit hashes.
+  - git log --oneline # Checking the previous commits with commit hashes in short format.
+  - git diff # shows defference between previous and new change to files that hasn't commited or added to staging area.
+  - git diff <file_name> # shows defference between previous and new change to the file that hasn't commited or added to staging area.
   - git diff <commit_hash> # shows defference between previous and new change to the files in specific commit timeline.
   - git init --bare # initializing this command on remote directory to make the dir as bare repo.
   - git remote add origin <path> # adding local repo into remote location.
   - git remote remove origin # removing remote location from the local repo.
+  - git push -u origin <branch_name> # pushing a new local branch into remote repository for the first time. "-u" stands for upstream.
+  - git pull origin <branch_name> # checking the remote repository branch, if it is updated.
+  - git push origin <branch_name> # pushing changes into the remote repository branch.
+  - git push origin -d <branch_name> # to delete a branch from remote.
   - git clone </path/repo_name> <location> # cloning a repository from remote location.
   - git remote -v # checking information about the remote location of the repository.
   - git branch # lists all of the local branches.
@@ -34,14 +40,10 @@ tracking:
   - git branch --merged # checking out if there, any branch merged with the master.
   - git merge <branch_name> # merging branch with the master.
   - git branch -d <branch_name> # to delete a local branch.
-  - git push origin -d <branch_name> # to delete a branch from remote.
-  - git push -u origin <branch_name> # pushing a new local branch into remote repository. "-u" stands for upstream.
-  - git pull origin <branch_name> # checking the remote repository branch, if it is updated.
-  - git push origin <branch_name> # pushing changes into the remote repository branch.
 
 
 troubleshooting:
-  - rm -f .git/index.lock | .git/ORIG_HEAD.lock # if there is showing error because of index or ORIG_HEAD .lock file.
+  - rm -f .git/index.lock | .git/ORIG_HEAD.lock # if there is error because of index or ORIG_HEAD .lock file.
 
 
 resources:
