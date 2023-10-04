@@ -9,17 +9,20 @@ configuration:
 
 
 tracking:
-  - git init # intializing git repository.
-  - git status # Checking the status of files in local and remote.
-  - touch .gitignore # creating ".gitignore" file and put file names in there you don't want to be tracked.
-  - git add -A # adding all the files to the staging area, doesn't matter which dir you are on the repo.
+  - git init # Intializing git repository.
+  - git status # Checking the status of files in local and remote repo.
+  - touch .gitignore # Creating ".gitignore" file and then putting file names in there, which won't be tracked.
+  - git add -A # Adding all the files to the staging area, doesn't matter which dir you are on the repo.
   - git restore --staged <filename> # Removing files from staging area.
+  - git restore <filename> # To discard changes in working directory. Basically same as "git checkout <file_name>".
+  - git checkout <file_name> # Undoing changes to specific file that has made, which is currently untracked.
   - git commit -m <message> # commiting files to the git repository.
-  - git rm --cached <file_name> # ignoring a previously committed file.
+  - git rm --cached <file_name> # Removing a file from tracked/staging area as untracked.
   - git log # Checking the previous commits with commit hashes.
   - git log --oneline # Checking the previous commits with commit hashes in short format.
-  - git diff # shows defference between previous and new change to files that hasn't commited or added to staging area.
-  - git diff <file_name> # shows defference between previous and new change to the file that hasn't commited or added to staging area.
+  - git diff # shows defference between previous and new change to the repo that hasn't added to the staging area.
+  - git diff <file_name> # shows defference between previous and new change to specific file that hasn't added to the staging area.
+  - git diff --cached <file_name> # shows defference between last commit and new changes.
   - git diff <commit_hash> # shows defference between previous and new change to the files in specific commit timeline.
   - git init --bare # initializing this command on remote directory to make the dir as bare repo.
   - git remote add origin <path> # adding local repo into remote location.
