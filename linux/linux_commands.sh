@@ -114,11 +114,3 @@ history
 history -c # clears history only for the current session.
 history | less
 ctrl + r  # to serach recent commands.
-
-
-# Z Shell
-
-cd ...  # as much as dot to go backward.
-command and hit tab twice #using arrow keys to navigate specific directory.
-take <dir_name> # create a directory and jump inside it.
-command hit up arrow # to get specific command that already typed.
