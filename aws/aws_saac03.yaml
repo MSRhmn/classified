@@ -323,7 +323,7 @@ EBS (Elastic Block Store) & EFS (Elastic File System):
 
   AWS Backup: 
       - Use AWS Backup to backup AWS services, such as EC2, EBS, EFS, FSx for Lustre, FSx for windows file server and Storage Gateway.
-      - AWS Organisation can be conjunctioned with AWS Backup to backup different AWS services across multiple AWS accounts.
+      - AWS Organization can be conjunctioned with AWS Backup to backup different AWS services across multiple AWS accounts.
       - Backup gives centralized control, by automating backups and defining life cycle policies for data. To get better compliance, enforcing backup policies, ensuring backups are encrypted and audit them once they are completed.
 
 
@@ -526,7 +526,7 @@ Route 53:
 Elastic Load Balancers:
 
   Application Load Balancers (Network Layer 7):
-    - A listener checks for connection requests from clients, using the protocol and port that are configured.
+    - A listener checks for connection requests from clients, using the protocol and port that is configured.
     - Rules determine how the load balancer routes the requests to its registered targets. Each rule consists of a priority, one or more actions and one or more conditions.
     - Each target group routes requests to one or more registered targets, such as ec2 instances, using the protocol and port number as specified.
     - Application load balancer only support HTTP and HTTPS.
@@ -536,16 +536,16 @@ Elastic Load Balancers:
     Network Load Balancers (Network Layer 4):
       - Use cases, where need extreme performance.
       - Needed where protocols are not supported by Application Load Balancers.
-      - Network Load Balancers can decrypt traffic by installing the certificate on the server.
+      - Network Load Balancers can decrypt traffic by installing the certificate on the Load Balancer.
 
 
     Classic Load Balancers (Network Layer 4/7):
       - 504 error means the gateway has timed out. The application is not responding within the idle timeout period. Basically the web server or the database server is down.
-      - To check the clients IPv4 address use case X-Forwarded-For header.
+      - To check the clients IPv4 address from the EC2 instance use case will be X-Forwarded-For header.
 
       
     Sticky Sessions:
-      - Sticky sessions enable user to stick the same ec2 instance. Can be useful if storing data locally to that instance. Disable sticky session if that specific instance is removed from the pool.
+      - Sticky sessions enable user to stick the same EC2 instance. Can be useful if storing data locally to that instance. Disable sticky session if that specific instance is removed from the pool.
       - Sticky sessions can be used in Application Load Balancers but the traffic will be sent at the target group level.
 
 
@@ -590,15 +590,14 @@ High Availability and Scaling:
     - Get ahead of the workload. Whenever possible picking the solution as predictive rather than reactive.
     - Bake AMIs to reduce build times. To avoid long provisioning times by putting everything in an AMI. This is better than using user data, whenever possible.
     - Spread out. Making sure that auto scaling groups are spreaded out over multiple availabilty zones.
-    - steady state groups allow to create a situation where the failure of a legacy codebase or resource that can not be scaled can automatically recover from failure.
+    - Steady state groups allow to create a situation where the failure of a legacy codebase or resource that can not be scaled can automatically recover from failure.
     - Elastic Load Balancers are essential for auto scaling groups. Making sure that health checks are on, otherwise instances won't be terminated or replaced when they fail health checks.
 
 
     Database Scaling:
       - RDS has the most database scaling options.
-      - Horizontal scaling is usually preferred over vertical.
-      - RDS databases scales horizontally using the read replicas.
-      - Dynamo DB scaling comes down to accesss patterns.
+      - Horizontal scaling is usually preferred over vertical, can be reached by deploying read replica.
+      - Dynamo DB scaling comes down to accesss patterns like for predictable workload auto/provisioned scaling, when it comes to unpredictable workload On-demand will be the choice.
       
 
 
@@ -1051,7 +1050,7 @@ Machine Learning:
 
     - Elastic Inference to optimize cost using CPU based instance rather than GPU based instance.
     - SageMaker supports automatic scaling and high availability.
-    
+   
 
   Translate:
     - Translating from one language to another using deep learning/neural networks, that's what Translate do.
