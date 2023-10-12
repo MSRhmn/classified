@@ -28,9 +28,10 @@ tracking:
   - git remote add origin <path> # adding local repo into remote location.
   - git remote remove origin # removing remote location from the local repo.
   - git push -u origin <branch_name> # pushing a new local branch into remote repository for the first time. "-u" stands for upstream.
-  - git pull origin <branch_name> # checking the remote repository branch, if it is updated.
   - git push origin <branch_name> # pushing changes into the remote repository branch.
   - git push origin -d <branch_name> # to delete a branch from remote.
+  - git fetch --all # fetching changes from remote repo to local.
+  - git pull origin <branch_name> # checking the remote repository branch, if it is updated.
   - git clone </path/repo_name> <location> # cloning a repository from remote location.
   - git remote -v # checking information about the remote location of the repository.
   - git branch # lists all of the local branches.
