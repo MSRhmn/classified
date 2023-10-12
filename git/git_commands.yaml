@@ -4,6 +4,9 @@ configuration:
   - git config --global user.name <full_name>
   - git config --global user.email <username@email.com>
   - git config --global init.defaultBranch <branch_name>
+  - git config --global gpg.format ssh # Specifying to git to use ssh key as signed key.
+  - git config --global user.signingkey /PATH/TO/.SSH/KEY.PUB # Adding the ssh key path to use for signing commits.
+  - git config --global commit.gpgsign true # To sign all commits by default in any local repository on the computer.
   - git config --list # checking the configuration file.
   - git <command> --help
 
