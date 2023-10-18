@@ -35,10 +35,9 @@ tracking:
   - git remote remove origin # removing remote location from the local repo.
   - git push -u origin <branch_name> # pushing a new local branch into remote repository for the first time. "-u" stands for upstream.
   - git push origin <branch_name> # pushing changes into the remote repository branch.
-  - git push origin -d <branch_name> # to delete a branch from remote.
   - git fetch --all # fetching changes from remote repo to local.
   - git pull origin <branch_name> # checking the remote repository branch, if it is updated.
-  - git clone </path/repo_name> <location> # cloning a repository from remote location.
+  - git clone </path/repo_name> # cloning a repository from remote location.
   - git remote -v # checking information about the remote location of the repository.
   - git branch # lists all of the local branches.
   - git branch -a # checking all the branches that are local and remote.
@@ -47,9 +46,10 @@ tracking:
   - git checkout -b <branch_name> # creating and checking out in new branch at the same time.
   - git checkout <origin/branch_name> # to take a quick peek at an upstream branch, check it out directly.
   - git checkout <remote_branch_name> # creating local branch from remote branch to work with it.
-  - git branch --merged # checking out if there, any branch merged with the master.
+  - git branch --merged # Checking out if there is any branch merged with the master.
   - git merge <branch_name> # merging branch with the master.
   - git branch -d <branch_name> # to delete a local branch.
+  - git push origin -d <branch_name> # to delete a branch from remote.
 
 
 troubleshooting:
