@@ -6,7 +6,7 @@ xoxo - means huggs and kisses, while x means kiss and o means hug.
 conceive - getting pregnant
 incarnation - statue
 convention - currently
-constraint - restriction, retraint, control
+constraint - restriction, restraint, control
 notion - expecting, believe
 descendant - successor
 permutation - arrangement, order, sorting
@@ -83,3 +83,8 @@ anticipate - predict, forecast
 disinter - dig up
 propagate - breed, grow, cultivate
 inevitably - naturally, automatically, necessarily
+deduplication - elemination, redundant
+imperative - vital, crucial
+wicked - immoral, sinful, wrong, evil
+derive - obtain, acquire, gain
+substantial - considerable, real, solid
