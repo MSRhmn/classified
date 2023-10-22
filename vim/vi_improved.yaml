@@ -1,0 +1,9 @@
+# Vi Improved doc
+
+Opening, Closing, Saving files in vi:
+  - vi <file_name>  # Opening a file with vi, if the file name argument is not in the path, it will create that file.
+  - :q  # To exit out of vi, if there has no chage happened in the file.
+  - :wq  # Writing changes and quiting out of a file.
+  - :w  # Writing changes to a file.
+  - :q!  # Exit out of the vi without making any changes.
+  
