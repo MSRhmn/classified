@@ -17,13 +17,15 @@ tracking:
   - touch .gitignore # Creating ".gitignore" file and then putting file names in there, which won't be tracked.
   - git add -A # Adding all the files to the staging area, doesn't matter which dir you are on the repo.
   - git restore --staged <filename> # Removing files from staging area.
-  - git reset # Removes all the files from staging area.
   - git restore <filename> # Discard changes to unstaged file in working directory. Basically same as "git checkout <file_name>".
   - git checkout <file_name> # Undoing changes to unstaged file in working directory.
   - git commit -m <message> # commiting files to the git repository.
-  - git commit --amend -m <message> # Changing bad commit messages that are accidently happened, it also changes the commit hash.
-  - git commit --amend # Adding new changes without making a new commit, by modifying the last commit.
-  - git rm --cached <file_name> # Removing a commited/staged file to as unstaged.
+  - git commit --amend -m <message> # Changing a bad commit message that is accidently happened, it also changes the commit hash. Try only if commits are not pushed to remote or it will cause conflicts.
+  - git commit --amend # Adding newly staged changes to last commit without making a new commit, but it does changes the commit hash.
+  - git reset <commit_hash> # Moves the current branch HEAD to specific commit also removes all the previous staged files.
+  - git reset --soft <commit_hash> # Moves the current branch HEAD to specific commit but remains the previously staged files.
+  - git reset --hard <commit_hash> # Moves the current branch HEAD to specific commit also removes all the changes that are made.
+  - git rm --cached <file_name> # Removing a commited/staged file to be as unstaged.
   - git log # Checking the previous commits with commit hashes.
   - git log --oneline # Checking the previous commits with commit hashes in short format.
   - git diff # shows defference between previous and new change to the repo that hasn't added to the staging area.
@@ -34,16 +36,17 @@ tracking:
   - git remote add origin <path> # adding local repo into remote location.
   - git remote remove origin # removing remote location from the local repo.
   - git push -u origin <branch_name> # pushing a new local branch into remote repository for the first time. "-u" stands for upstream.
-  - git push origin <branch_name> # pushing changes into the remote repository branch.
+  - git push origin <branch_name> # pushing changes into remote repository branch.
   - git fetch --all # fetching changes from remote repo to local.
-  - git pull origin <branch_name> # checking the remote repository branch, if it is updated.
+  - git pull origin <branch_name> # checking remote repository branch, if it is updated.
   - git clone </path/repo_name> # cloning a repository from remote location.
-  - git remote -v # checking information about the remote location of the repository.
+  - git remote -v # checking information about remote location of the repository.
   - git branch # lists all of the local branches.
   - git branch -a # checking all the branches that are local and remote.
   - git branch <name> # create new branch.
   - git checkout <branch_name> # checking out in new branch.
   - git checkout -b <branch_name> # creating and checking out in new branch at the same time.
+  - git cherry-pick <commit_hash> # Taking a commit from a different branch and applying the same changes to the current branch.
   - git checkout <origin/branch_name> # to take a quick peek at an upstream branch, check it out directly.
   - git checkout <remote_branch_name> # creating local branch from remote branch to work with it.
   - git branch --merged # Checking out if there is any branch merged with the master.
@@ -51,9 +54,8 @@ tracking:
   - git branch -d <branch_name> # to delete a local branch.
   - git push origin -d <branch_name> # to delete a branch from remote.
 
-
 troubleshooting:
-  - rm -f .git/index.lock | .git/ORIG_HEAD.lock # if there is error because of index or ORIG_HEAD .lock file.
+  - rm -f .git/index.lock | .git/ORIG_HEAD.lock # if there is an error because of index or ORIG_HEAD .lock file.
 
 
 resources:
