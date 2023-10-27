@@ -25,7 +25,9 @@ tracking:
   - git reset <commit_hash> # Moves the current branch HEAD to specific commit also removes all the previous staged files.
   - git reset --soft <commit_hash> # Moves the current branch HEAD to specific commit but remains the previously staged files.
   - git reset --hard <commit_hash> # Moves the current branch HEAD to specific commit also removes all the changes that are made.
-  - git rm --cached <file_name> # Removing a commited/staged file to be as unstaged.
+  - git rm --cached <file_name> # Stop tracking a file in the working directory, but keep it in the file system.
+  - git clean -df # Removing untracked directories and files from the file system.
+  - git reflog # Sort of a garbage collection of the times of HEAD is changed through all the branches.
   - git log # Checking the previous commits with commit hashes.
   - git log --oneline # Checking the previous commits with commit hashes in short format.
   - git diff # shows defference between previous and new change to the repo that hasn't added to the staging area.
