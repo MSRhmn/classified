@@ -25,7 +25,7 @@ outbound - going out
 tenancy - rent
 resilient - tough, hard
 compliance - agreement, consent
-governance - rule
+regulations - rule, order, law, governance, administration, activity
 retention - control of something, capability, determine
 characteristic - feature
 distinct - clear-cut, definite
@@ -38,7 +38,7 @@ congenital - inborn, inherited
 allocate - issue, grant, devote, বরাদ্দ করা
 consolidate - together, combine, merge
 immerse - absorb, occupy
-ephemeral - short-time, temporary
+ephemeral - short-time, temporary, transient
 misnomer - inaccurate
 intermittent - sporadic, infrequent, occasional
 ubiquity - universality, all-presence, সর্বব্যাপীতা
@@ -92,3 +92,12 @@ ingestion - absorbing, swallowing
 stimulate - restorative, tonic
 threshold - doorstep, entrance, approach
 prospective - potential, probable, likely, eventual
+dazed - unable to think or react properly, bewildered, buffled, mystified, puzzled
+erroneous - mistaken, incorrect, inaccurate
+collision - crash, accident, bump, clash
+latter - hindmost, final, end, later
+thus - consequently, like this
+queue - line, row, column
+neat - tidy, orderly
+simulate - imitate, reproduce, replicate, mimic, parallel
+parity - equality, uniformity, consistency
