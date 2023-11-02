@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# A shell is a command interpreter that exposes to the user an interface to work with the underlying operating system.
+# A shell is a command interpreter that exposes to the user an interface to work with the underlying operating system/kernel.
 
 
 # System information
@@ -12,6 +12,9 @@ hostname # checking the host you are logged in.
 who # check users who are currently logged in.
 lastlog -u username # to check last login for security purpose.
 uptime # checking the systems uptime.
+date # Checking the date on the system.
+df # Checking the current amount of free space on disk drives.
+
 
 # Tree Navigation
 
@@ -19,17 +22,13 @@ uptime # checking the systems uptime.
 .. # means parent directory.
 ../.. # backwarding directories.
 * #to mark all the files or directories.
-pwd
-cd
-~
-cd /
-cd ..
-ls
-ls -lahi # "-i" stands for inode, which is metadata about the data.
+pwd # Prints current working directory
+cd | <path> # Changing directory paths in the Tree. "cd" self changes path into users home.
+ls -lahit # "-i" stands for inode, which is metadata about the data. "t" option sorts the result by file modification time. "h" ddisplays file sizes in human readable format rather than in bytes.
 pushd <dir_name>  # login into new session without exiting previous session.
 popd  # exiting out from a newly created session.
-ls -al > <file_name>  # transmitting data into a new file. ***
-ls -al >> <file_name>  # updating a file with new transmitted data. ***
+Ctrl - Alt - F1 | F6 # Checking virtual terminals or virtual consoles.
+Alt - F7 # Return to graphical desktop env.
 
 
 # File/Directory Manipulation
