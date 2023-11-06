@@ -101,3 +101,11 @@ queue - line, row, column
 neat - tidy, orderly
 simulate - imitate, reproduce, replicate, mimic, parallel
 parity - equality, uniformity, consistency
+ubiquitous - everywhere, omnipresent
+wondrous - marvellous
+whim - impulse, urge, notion, fancy
+attribute - property, ascribe
+strung - hang, suspend, sling, stretch
+commence - begin, start off
+accommodate - fit in with, lodge, take in
+constitute - add up to, make up, compose
