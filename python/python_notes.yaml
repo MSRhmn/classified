@@ -1,1 +1,68 @@
-/home/msrhmn/Dropbox/software_engineering/python/python_notes.yaml
+# Python Documentation
+
+Python Data Types:
+
+  Text Type:
+    - str
+
+  Numeric Types:
+    - int
+    - float
+    - complex
+
+  Boolean Type:
+    - bool
+
+  Sequence Types:
+    - list
+    - tuple
+    - range
+
+  Mapping Type:
+    - dict
+
+  Set Types:
+    - set
+    - frozenset
+
+  Binary Types:
+    - bytes
+    - bytearray
+    - memoryview
+
+
+Sppecial Value:
+  - None
+
+
+Reserved Keywords:
+  - False      await      else       import     pass
+  - None       break      except     in         raise
+  - True       class      finally    is         return
+  - and        continue   for        lambda     try
+  - as         def        from       nonlocal   while
+  - assert     del        global     not        with
+  - async      elif       if         or         yield
+
+
+Operators:
+  - is  # An identity operator. It is used to compare two objects and returns true if both are the same object.
+  - in  # Called the membership operator. Used to tell if a value is contained in a list, or another sequence.
+  - =   # Assignment operator, use to assign value to a variable.
+
+  Boolean Operators:
+    - and
+    - or
+    - not
+
+  Arithmetic Operators:
+    - (+) Addition
+    - (-) Subtruction
+    - (*) Multiplication
+    - (/) Division
+    - (**) Exponantiation
+    - (//) Floor Division
+    - (%) Modulus/Remainder
+
+  # PEMDAS calculating in regular math, Order matters in division and multiplication.
+  # Integer takes less and floating uses more space in the memory.
