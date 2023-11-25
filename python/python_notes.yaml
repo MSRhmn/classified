@@ -6,29 +6,23 @@ Python Data Types:
     - str
 
   Numeric Types:
-    - int
-    - float
-    - complex
+    # Integer takes less and floating uses more space in the memory.
+    - int, float, complex
 
   Boolean Type:
     - bool
 
   Sequence Types:
-    - list
-    - tuple
-    - range
+    - list, tuple, range
 
   Mapping Type:
     - dict
 
   Set Types:
-    - set
-    - frozenset
+    - set, frozenset
 
   Binary Types:
-    - bytes
-    - bytearray
-    - memoryview
+    - bytes, bytearray, memoryview
 
 
 Sppecial Value:
@@ -46,16 +40,18 @@ Reserved Keywords:
 
 
 Operators:
+  # The ternary operator in Python allows to quickly define a conditional.
+  - =   # Assignment operator, use to assign value to a variable. Assignment operator can be used with arithmetic operator to function as augmented operator.
   - is  # An identity operator. It is used to compare two objects and returns true if both are the same object.
   - in  # Called the membership operator. Used to tell if a value is contained in a list, or another sequence.
-  - =   # Assignment operator, use to assign value to a variable.
 
   Boolean Operators:
     - and
-    - or
+    - or  # Used in an expression returns the value of the first operand that is not a falsy value. Otherwise it returns the last operand.
     - not
 
   Arithmetic Operators:
+    # PEMDAS acronym to calculate math, Order matters in division and multiplication.
     - (+) Addition
     - (-) Subtruction
     - (*) Multiplication
@@ -64,5 +60,76 @@ Operators:
     - (//) Floor Division
     - (%) Modulus/Remainder
 
-  # PEMDAS calculating in regular math, Order matters in division and multiplication.
-  # Integer takes less and floating uses more space in the memory.
+  Comparison Operators:
+    - ==, !=, >, <, >=, <= # These operators can be use to get boolean values.
+
+  Bitwise Operators:
+    # Operators that are used to work on bits and binary numbers.
+    - (&) performs binary AND
+    - (|) performs binary OR
+    - (^) performs binary XOR
+    - (~) performs binary NOT
+    - (<<) shift left operation
+    - (>>) shift right operation
+
+
+String AND it's Methods:
+  # A string can be multi-line when defined with a special syntax, enclosing the string in a set of 3 quotes also called as docstring.
+  # Any number, boolean can be converted into str using the str() class constructor.
+  # None of the string methods alter the original string, they just return a modified new string.
+  # Escape charcters in string commonly used as \\, \", \n, \t.
+  # Given a string, characters using square brackets to get a specific item, given its index, starting from 0. Using a negative number will start counting from the end also range can be used what we call slicing.
+  - str.isalpha() # Return True if all characters in the string are alphabetic and there is at least one character, False otherwise.
+  - str.isalnum() # Return True if all characters in the string are alphanumeric and there is at least one character, False otherwise.
+  - str.isdecimal() # Return True if all characters in the string are decimal characters and there is at least one character, False otherwise.
+  - str.lower() # To get a lowercase version of a string.
+  - str.upper() # To get an uppercase version of a string
+  - str.islower() # To check if a string is lowercase.
+  - str.isupper() # To check if a string is uppercase.
+  - str.title() # Return a titlecased version of the string where words start with an uppercase character and the remaining characters are lowercase.
+  - str.startswith(arg) # Return True if string starts with the prefix, otherwise return False.
+  - str.endswith(arg) # To check if the string ends with a specific substring.
+  - str.replace(arg, arg) # To replace a part of a string.
+  - str.split(arg) # Return a list of the words in the string by split a string on a specific character separator.
+  - str.strip() # To trim the whitespace from a string.
+  - str.join(iterable) # Return a string which is the concatenation of the strings in iterable.
+  - str.find(substr) # To find the position of a substring.
+  
+
+List Methods:
+  # List can be referenced by their index[0] or slice[start:stop:step] to get or update their values. Like items[:] will give a copy of the list, items[::-1] will output a reverse copy of the list.
+  # del keyword is handy to use with list to delete specifc index[] item or even the list itself.
+  # += augmented operator can be used with list to update list values.
+  - items.index(item) # Getting a items index number from a list.
+  - items.append(item) # Adding new items to the end of the list.
+  - items.extend([items]) # Adding multiple items in the end of the list.
+  - items.insert(index, item) # Adding a item in a specific index number, it does move the entire sequence from that index but doesn't delete it.
+  - items.remove(item) # Removing a speific item from the list.
+  - items.pop(index) # Removes the sequence last item if the specific index not provided.
+  - items.sort() # Sorting items in the list. Sorting modifies the original list to avoid this using slice[:] copying the original list to new list.
+
+
+Tuples:
+  # Data are immutable, once created items cannot be removed or added.
+  # Shares some list methods like slicing and getting index of specific item.
+  # Greate use is that it can be unpacked it's items and used with variable.
+  # A new tuple can be created with existing tuple and some new value concatenate with it, for a new single value there has to be a comma at the end of the item.
+  # Tuples can be nested with list and dictionary types also be update by accessing it.
+  # Tuples can be used with strings by substituting them with %s followed by % and the tuple in the end.
+  
+
+Ranges:
+  # Ranges work just like the slices, range(start, end, step).
+  # Ranges are exclusive, it means it will not include the end value and if the start value isn't defined it starts with 0.
+  # Memory efficient, takes less space in the memory.
+
+
+Dictionary:
+  # Dictionaries can be used together with dict[] to get out/update values or even adding a new key, value pair. 
+  - dict.get() # Method takes a key as argument and retrieves it value.
+  - dict.keys() # Retrieves keys of a dictionary.
+  - dict.values() # Retrieve values of a dictionary.
+  - dict.items() # Retrieve items from a dictionary.
+  - dict.clear()  # Clears everything out from a dictionary.
+  - dict.pop() # Retrieves the value of a key, and subsequently deletes the item from the dictionary.
+  
