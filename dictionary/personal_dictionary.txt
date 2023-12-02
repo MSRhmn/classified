@@ -109,3 +109,7 @@ strung - hang, suspend, sling, stretch
 commence - begin, start off
 accommodate - fit in with, lodge, take in
 constitute - add up to, make up, compose
+proliferate - grow rapidly
+paradigm - model, pattern, example
+hypothetical - theoretical, conjectural, proposed, conceptual
+enumerate - list, catalogue

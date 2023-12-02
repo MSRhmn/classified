@@ -480,7 +480,8 @@ VPC:
 
     
 Route 53:
-  - Understand the difference between an alias and a CName record. Given the choice alwasy choose alias record over CName.
+  - CName records cannot be used with root level domain aka naked domain. Given the choice alwasy choose alias record over CName.
+  - EC2 DNS name cannot be use to create alias record.
   - Commond DNS record types - SOA record, CName record, NS record, A record.
   - Domain names can be bought directly with AWS. It can take upto 3 days to register depending on the circumstances.
   - 7 available routing policies with Route 53. Simple, Weighted, Failover, Geolocation, Geoproximity, Latency and Multivalue Routing Policy.
