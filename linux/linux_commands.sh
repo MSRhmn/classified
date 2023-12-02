@@ -40,6 +40,7 @@ cp -r
 rm
 rm -r
 mkdir
+mkdir -p <dir/subdir> # Creating nested directories.
 rmdir
 ln </file_location> <link_location> # Hard links are only available for files not directories and doesn't support over "not identical" storage device. It creates a copy of the file.
 ln -s </file/dir_location> <link_location> # creating symbolic links for files or directory. Use absolute paths to create links to avoid broken links. Can be moved symlinks to any storage device.
