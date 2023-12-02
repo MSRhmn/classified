@@ -79,6 +79,7 @@ String AND it's Methods:
   # None of the string methods alter the original string, they just return a modified new string.
   # Escape charcters in string commonly used as \\, \", \n, \t.
   # Given a string, characters using square brackets to get a specific item, given its index, starting from 0. Using a negative number will start counting from the end also range can be used what we call slicing.
+  # template.format(args) method can be used with string templates to pass values inside a string.
   - str.isalpha() # Return True if all characters in the string are alphabetic and there is at least one character, False otherwise.
   - str.isalnum() # Return True if all characters in the string are alphanumeric and there is at least one character, False otherwise.
   - str.isdecimal() # Return True if all characters in the string are decimal characters and there is at least one character, False otherwise.
@@ -129,7 +130,6 @@ Dictionary:
   - dict.get() # Method takes a key as argument and retrieves it value.
   - dict.keys() # Retrieves keys of a dictionary.
   - dict.values() # Retrieve values of a dictionary.
-  - dict.items() # Retrieve items from a dictionary.
+  - dict.items() # Retrieve items from a dictionary and return a list of tuples.
   - dict.clear()  # Clears everything out from a dictionary.
-  - dict.pop() # Retrieves the value of a key, and subsequently deletes the item from the dictionary.
-  
+  - dict.pop(key) # Retrieves the value of a key, and subsequently deletes the item from the dictionary.
