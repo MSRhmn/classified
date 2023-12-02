@@ -15,19 +15,21 @@ tracking:
   - git init # Intializing git repository.
   - git status # Checking the status of files in local and remote repo.
   - touch .gitignore # Creating ".gitignore" file and then putting file names in there, which won't be tracked.
-  - git add -A # Adding all the files to the staging area, doesn't matter which dir you are on the repo.
+  - git add <file_name> | . | -A | # "." adds current working directory files/dirs, "-A" adds all, doesn't matter which dir you are on the working directory.
   - git restore --staged <filename> # Removing files from staging area.
   - git restore <filename> # Discard changes to unstaged file in working directory. Basically same as "git checkout <file_name>".
   - git checkout <file_name> # Undoing changes to unstaged file in working directory.
   - git commit -m <message> # commiting files to the git repository.
   - git commit --amend -m <message> # Changing a bad commit message that is accidently happened, it also changes the commit hash. Try only if commits are not pushed to remote or it will cause conflicts.
   - git commit --amend # Adding newly staged changes to last commit without making a new commit, but it does changes the commit hash.
+  - git cherry-pick <commit_hash> | <commit_hash> <commit_hash> # Taking one or two commits from a different branch and applying the same changes to the current branch rather than merging whole branch. Yes, it is also changes the commit hash/hashes.
   - git reset <commit_hash> # Moves the current branch HEAD to specific commit also removes all the previous staged files.
   - git reset --soft <commit_hash> # Moves the current branch HEAD to specific commit but remains the previously staged files.
   - git reset --hard <commit_hash> # Moves the current branch HEAD to specific commit also removes all the changes that are made.
+  - git revert <commit_hash> # It makes a new commit by undoing a specific commit that has passed to it as argument.
   - git rm --cached <file_name> # Stop tracking a file in the working directory, but keep it in the file system.
-  - git clean -df # Removing untracked directories and files from the file system.
-  - git reflog # Sort of a garbage collection of the times of HEAD is changed through all the branches.
+  - git clean -df # Removing untracked directories and files from the working directory.
+  - git reflog # Sort of a garbage collection of the commits. The many times HEAD has changed through all the branches. Life-Saver **
   - git log # Checking the previous commits with commit hashes.
   - git log --oneline # Checking the previous commits with commit hashes in short format.
   - git diff # shows defference between previous and new change to the repo that hasn't added to the staging area.
@@ -48,13 +50,13 @@ tracking:
   - git branch <name> # create new branch.
   - git checkout <branch_name> # checking out in new branch.
   - git checkout -b <branch_name> # creating and checking out in new branch at the same time.
-  - git cherry-pick <commit_hash> # Taking a commit from a different branch and applying the same changes to the current branch.
   - git checkout <origin/branch_name> # to take a quick peek at an upstream branch, check it out directly.
   - git checkout <remote_branch_name> # creating local branch from remote branch to work with it.
   - git branch --merged # Checking out if there is any branch merged with the master.
   - git merge <branch_name> # merging branch with the master.
   - git branch -d <branch_name> # to delete a local branch.
   - git push origin -d <branch_name> # to delete a branch from remote.
+
 
 troubleshooting:
   - rm -f .git/index.lock | .git/ORIG_HEAD.lock # if there is an error because of index or ORIG_HEAD .lock file.
