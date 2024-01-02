@@ -6,20 +6,28 @@ configuration:
   - git config --global init.defaultBranch <branch_name>
   - git config --global gpg.format ssh # Specifying to git to use ssh key as signed key.
   - git config --global user.signingkey /PATH/TO/.SSH/KEY.PUB # Adding the ssh key path to use for signing commits.
-  - git config --global commit.gpgsign true # To sign all commits by default in any local repository on the computer.
-  - git config --list # checking the configuration file.
+  - git config --global commit.gpgsign true # To sign all commits by default in local repositories.
+  - git config --list # checking the current configuration file in the system.
   - git <command> --help
 
 
 tracking:
+
+  # initializing and staging.
   - git init # Intializing git repository.
   - git status # Checking the status of files in local and remote repo.
-  - touch .gitignore # Creating ".gitignore" file and then putting file names in there, which won't be tracked.
+  - touch .gitignore # Creating ".gitignore" file and then putting file/dir names in there, which won't be tracked.
   - git add <file_name> | . | -A | # "." adds current working directory files/dirs, "-A" adds all, doesn't matter which dir you are on the working directory.
+  - git add -p <file_name> # For interactve staging in repository.
   - git restore --staged <filename> # Removing files from staging area.
   - git restore <filename> # Discard changes to unstaged file in working directory. Basically same as "git checkout <file_name>".
   - git checkout <file_name> # Undoing changes to unstaged file in working directory.
-  - git commit -m <message> # commiting files to the git repository.
+  - git stash # Stashing changes in the working directory to do other works.
+  - git stash pop # Retrieving stashed changes in the wroking directory.
+
+  # Making commits
+  - git commit # Commiting changes to the git repository, props-up cli editor to write proper message.
+  - git commit -m <message> # Commiting changes and writing a quick shorte message.
   - git commit --amend -m <message> # Changing a bad commit message that is accidently happened, it also changes the commit hash. Try only if commits are not pushed to remote or it will cause conflicts.
   - git commit --amend # Adding newly staged changes to last commit without making a new commit, but it does changes the commit hash.
   - git cherry-pick <commit_hash> | <commit_hash> <commit_hash> # Taking one or two commits from a different branch and applying the same changes to the current branch rather than merging whole branch. Yes, it is also changes the commit hash/hashes.
@@ -29,25 +37,35 @@ tracking:
   - git revert <commit_hash> # It makes a new commit by undoing a specific commit that has passed to it as argument.
   - git rm --cached <file_name> # Stop tracking a file in the working directory, but keep it in the file system.
   - git clean -df # Removing untracked directories and files from the working directory.
+
+  # Logging and changes
   - git reflog # Sort of a garbage collection of the commits. The many times HEAD has changed through all the branches. Life-Saver **
   - git log # Checking the previous commits with commit hashes.
   - git log --oneline # Checking the previous commits with commit hashes in short format.
+  - git log --all --graph --decorate # Shows a nice and clean graph of git commits from all branches.
   - git diff # shows defference between previous and new change to the repo that hasn't added to the staging area.
   - git diff <file_name> # shows defference between previous and new change to specific file that hasn't added to the staging area.
   - git diff --cached <file_name> # shows defference between last commit and new changes.
   - git diff <commit_hash> # shows defference between previous and new change to the files in specific commit timeline.
+  - git blame <file_name> # Debugging a specific file by lines and who was responsible for specific commit.
+  - git show <commit/tag> # Shows a specific commit or tag in human readable way.
+
+  # Working with remote
   - git init --bare # initializing this command on remote directory to make the dir as bare repo.
   - git remote add origin <path> # adding local repo into remote location.
   - git remote remove origin # removing remote location from the local repo.
-  - git push -u origin <branch_name> # pushing a new local branch into remote repository for the first time. "-u" stands for upstream.
+  - git push -u origin <branch_name> # pushing a new local branch into remote repository for the first time. "-u" is short form of "--set-upstream-to".
   - git push origin <branch_name> # pushing changes into remote repository branch.
   - git fetch --all # fetching changes from remote repo to local.
   - git pull origin <branch_name> # checking remote repository branch, if it is updated.
   - git clone </path/repo_name> # cloning a repository from remote location.
+  - git clone </path/repo> --shallow # Cloning the latest snapshot of the repository.
   - git remote -v # checking information about remote location of the repository.
+
+  # Branching
   - git branch # lists all of the local branches.
-  - git branch -a # checking all the branches that are local and remote.
-  - git branch <name> # create new branch.
+  - git branch -a # Checking all the branches that are local and remote. "-a" is short of "--all" option.
+  - git branch <name> # create new branch. Some convention to create branches follows: "dev/query-inputs", "feature/user-bot".
   - git checkout <branch_name> # checking out in new branch.
   - git checkout -b <branch_name> # creating and checking out in new branch at the same time.
   - git checkout <origin/branch_name> # to take a quick peek at an upstream branch, check it out directly.
