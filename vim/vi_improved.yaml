@@ -6,20 +6,24 @@ Modes:
   - Pressing "i" will begin insert mode in vi and user can start typing in a file. Hitting the esc key will return to normal mode from insert mode.
 
 
-Opening, Closing, Saving files in vi:
-  - vi <file_name>  # Opening a file with vi, if the file name argument is not in the path, it will create that file.
-  - :q  # To exit out of vi, if there has no chage happened in the file.
-  - :wq  # Writing changes and quiting out of a file.
+Editing in vi:
+  - vi <file_name>  # Opening a file with vi, if the file name argument is not in the path, it will open a new file.
   - :w  # Writing changes to a file.
+  - :wq  # Writing changes and quiting out of a file.
+  - :q  # To exit out of vi, if there has no chage happened in the file.
   - :q!  # Exit out of the vi without making any changes.
-  
+  - A # This command will move cursor to the end of the line and begin to insert mode.
+
 
 Navigation:
+  # Any number before a command, vi will perform number of times performance.
   - j  # Down one line.
   - k  # Up one line.
   - h  # Left one character.
   - l  # Right one character.
-  - 0  # To the beginning of the current line.
   - $  # To the end of the current line.
+  - 0  # To the beginning of the current line.
   - G  # To the last line of the file.
   - gg # To the first line of the file.
+  - } # Down one block of code.
+  - { # Up one block of code.
