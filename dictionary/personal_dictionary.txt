@@ -110,6 +110,11 @@ commence - begin, start off
 accommodate - fit in with, lodge, take in
 constitute - add up to, make up, compose
 proliferate - grow rapidly
-paradigm - model, pattern, example
+paradigm - model, pattern, example, instance
 hypothetical - theoretical, conjectural, proposed, conceptual
 enumerate - list, catalogue
+stash - store, stow, pack, load, hide
+concise - short, brief
+aspect - feature, side, particular
+elicit - obtain, bring out, extract, evoke
+chore - task, job, duty
