@@ -105,9 +105,9 @@ List Methods:
   - items.append(item) # Adding new items to the end of the list.
   - items.extend([items]) # Adding multiple items in the end of the list.
   - items.insert(index, item) # Adding a item in a specific index number, it does move the entire sequence from that index but doesn't delete it.
-  - items.remove(item) # Removing a speific item from the list.
+  - items.remove(item) # Removing a speific item from the list by giving value.
   - items.pop(index) # Removes the sequence last item if the specific index not provided.
-  - items.sort() # Sorting items in the list. Sorting modifies the original list to avoid this using slice[:] copying the original list to new list.
+  - items.sort(reverse=True) # Sorting permanently items in a list. Sorting modifies the original list to avoid this using slice[:] copying the original list to new list.
 
 
 Tuples:
@@ -127,9 +127,61 @@ Ranges:
 
 Dictionary:
   # Dictionaries can be used together with dict[] to get out/update values or even adding a new key, value pair. 
-  - dict.get() # Method takes a key as argument and retrieves it value.
+  - dict.get(key) # Method takes a key as argument and retrieves it value.
   - dict.keys() # Retrieves keys of a dictionary.
   - dict.values() # Retrieve values of a dictionary.
   - dict.items() # Retrieve items from a dictionary and return a list of tuples.
   - dict.clear()  # Clears everything out from a dictionary.
   - dict.pop(key) # Retrieves the value of a key, and subsequently deletes the item from the dictionary.
+
+
+Control Statements:
+  # "pass" is a useful keyword to use with statements. Like using with "else" to not throughing an error.
+
+
+Loops:
+  # "continue" and "break" both can be used with loops. continue stops the current iteration and tells Python to execute the next one. break stops the loop altogether, and goes on with the next instruction after the loop end.
+  # Not using lists inside a for loop, it is best to use while loop then.
+
+
+Functions:
+  # Order matters in positional arguments but when passing value in keyword argument for positional arguments then it doesn't matter.
+  # Functions can have one or more parameters with default value. (param=default_value)
+  # *args gathers all remaining arguments as a tuple in function parameter. For passing list/tuple or variable as a argument, using * before the var/list/tuple. This is called unpacking.
+  # **kwargs gathers remaining arguments as a dictionary in function parameter. For passing ditionary of data or variable as a argument, using ** before the dictionary or variable. This is also called unpacking.
+  
+  Mixing Parameter Order in Function:
+    - parameters
+    - *args
+    - default parameters
+    - **kwargs
+    
+  
+  Built-in Functions:
+    - abs() # Returns absolute value of a number.
+    - round(number, ndigits=None) # Return number rounded to ndigits precision after the decimal point.
+    - enumerate(iterable, start=0) # Returns an enumerate object with index. iterable must be a sequence, an iterator, or some other object which supports iteration.
+    - input(prompt) # Takes input from the user as string. Displayes prompt if anything specified in the function.
+    - len(s) # Returns the length (the number of items) of an object.
+    - sorted(iterable, reverse=False) # Return a new sorted list from the items in iterable, can be performed with reverse order.
+    - type() # With one argument, returns the type of an object. 
+    - zip(*iterables, strict=False) # Iterate over several iterables in parallel, producing tuples with an item from each one.
+
+  - """docstring""" # to write documentation inside a function or class.
+  - func/class_name.__doc__  # to read a function or class documention.
+  - from, import, as # Frequently used keywords with functions and classes for making module.
+  - lambda [parameters]: expression # An anonymous inline function consisting of a single expression which is evaluated when the function is called.
+  # Global variable data can be read from a function but can't perform write.
+
+
+Classes:
+  # The OOP principles are Encapsulation, Abstraction, Inheritance, Polymorphism.
+  # Everything in python is object and class is to create types. An object is instance of a class.
+  # Classes can inherit properties and methods from other classes by giving a class name as parameter to another class.
+  # Classes also can be invoked from another class's attribute, this is called composition.
+  # In python special methods are invoked automatically when conditions are met.
+  # Polymorphism refers to a subclass's ability to adapt a method that already exists in its superclass to meet its needs.
+  # If an abstract method is declared in a superclass, subclasses that inherit from the superclass must have their own implementation of the method.
+  - __init__()  # is a special method, called constructor to define object properties.
+  - __repr__() # is a special method used to define a string representation of an object. 
+  - super() # is a special function which allows to call a method from parent class.
