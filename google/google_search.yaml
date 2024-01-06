@@ -1,0 +1,38 @@
+# Efficient Google Search
+
+
+Quotes for Exact-Match Search:
+  - "what is ORM"
+  - quotes can be used with phrases to get exact result.
+
+The AND operator:
+  - REST AND ORM
+  - And will return results only related to both terms.
+
+The OR operator:
+  - (Java OR GO) REST framework
+  - OR operator can be use to get one of the search term.
+
+The -(minus) operator:
+  - cloud computing -TechTarget
+  - Minus operator will exclude the result that contain a term or phrase.
+
+Wildcards (*) as placeholders:
+  - "best books *"
+  - Wildcards can be used as placeholders, which will be replaced by any word or phrase.
+
+Search inside a single website:
+  - site:medium.com "hash function" or site: keyword
+  - Searching something in particular on a specific website or a specific term.
+
+Definition of a term:
+  - define: OOP
+  - Getting definition of a specific term. It will try it's best to show the definition reults.
+
+Find specific file:
+  - filetype:pdf SQL
+  - Finding a specific file type on a topic.
+
+Search for range of numbers:
+  - music 1960..1970
+  - Searching specific term in a timeframe.
