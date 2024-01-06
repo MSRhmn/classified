@@ -33,17 +33,19 @@ Alt - F7 # Return to graphical desktop env.
 
 # File/Directory Manipulation
 
-touch
+touch <file_name>
+touch <file-name-{1..20}.ext> # Creating multiple files in a single command.
+echo <string> > <file_name> # Adding echo output to a new file. ">>" can be use to append echo in the existing file.
 mv
 cp
 cp -r
 rm
-rm -r
+rm -r # Removing files and directories recursively.
 mkdir
 mkdir -p <dir/subdir> # Creating nested directories.
 rmdir
-ln </file_location> <link_location> # Hard links are only available for files not directories and doesn't support over "not identical" storage device. It creates a copy of the file.
-ln -s </file/dir_location> <link_location> # creating symbolic links for files or directory. Use absolute paths to create links to avoid broken links. Can be moved symlinks to any storage device.
+ln </file_location> <location/file_name> # Hard links are only available for files not directories and doesn't support over "not identical" storage device. It creates a copy of the file.
+ln -s </file/dir_location> <location/file_name> # creating symbolic links for files or directory. Use absolute paths to create links to avoid broken links. Can be moved symlinks to any storage device.
 
 
 # Reading/Editing Files
@@ -52,8 +54,6 @@ cat > <file_name>  # creating files from the command line.
 cat <file_name> <file_name2> | less  # reading multiple files together.
 less
 tail -f <file_name> # reads file with any current update with in the file.
-nano
-vim
 
   # The find command
 
@@ -114,3 +114,8 @@ history
 history -c # clears history only for the current session.
 history | less
 ctrl + r  # to serach recent commands.
+
+
+# Debian Package manger
+
+sudo apt search  <package_name> # Searching a specific package in the apt repository.
