@@ -23,7 +23,6 @@ entity - structure, organization
 inbound - coming in
 outbound - going out
 tenancy - rent
-resilient - tough, hard
 compliance - agreement, consent
 regulations - rule, order, law, governance, administration, activity
 retention - control of something, capability, determine
@@ -32,9 +31,9 @@ distinct - clear-cut, definite
 provision - supply
 persistent - static
 btw - by the way, বত্ব
-resilient - strong, hard, taugh
+resilient - strong, hard, tough, rigid, stiff
 decouple - separate
-congenital - inborn, inherited
+congenital - inborn, inherited, intrinsic
 allocate - issue, grant, devote, বরাদ্দ করা
 consolidate - together, combine, merge
 immerse - absorb, occupy
@@ -84,7 +83,7 @@ disinter - dig up
 propagate - breed, grow, cultivate
 inevitably - naturally, automatically, necessarily
 deduplication - elemination, redundant
-imperative - vital, crucial
+imperative - vital, crucial, indispensable
 wicked - immoral, sinful, wrong, evil
 derive - obtain, acquire, gain
 substantial - considerable, real, solid
@@ -92,7 +91,7 @@ ingestion - absorbing, swallowing
 stimulate - restorative, tonic
 threshold - doorstep, entrance, approach
 prospective - potential, probable, likely, eventual
-dazed - unable to think or react properly, bewildered, buffled, mystified, puzzled
+dazed - unable to think or react properly, buffled, mystified, puzzled
 erroneous - mistaken, incorrect, inaccurate
 collision - crash, accident, bump, clash
 latter - hindmost, final, end, later
@@ -118,3 +117,18 @@ concise - short, brief
 aspect - feature, side, particular
 elicit - obtain, bring out, extract, evoke
 chore - task, job, duty
+traverse - travel over/across
+credibility - trustworthiness, reliability, dependability
+resemble - look like, be similar to
+respite - rest, break, breathing space, interval
+judicious - wise, sensible, prudent
+obscure - uncertain, unclear, unknown
+despise - hate, loathe, detest
+rational - logical, resoned, sensible
+literal - textual
+eloquent - persuasive, expressive, fluent
+strive - try, attempt, aspire, venture
+inclusion - addition, insertion
+consecutive - successive, following
+denote - indicate, designate, signigy
+circular - round, disk-shaped
