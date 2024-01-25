@@ -10,7 +10,7 @@ constraint - restriction, restraint, control
 notion - expecting, believe
 descendant - successor
 permutation - arrangement, order, sorting
-consecutive - following, continuous
+consecutive - following, continuous, successive
 accumulate - gather, collect
 infrastructure - base, framework
 vicinity - neighbourhood
@@ -129,6 +129,10 @@ literal - textual
 eloquent - persuasive, expressive, fluent
 strive - try, attempt, aspire, venture
 inclusion - addition, insertion
-consecutive - successive, following
-denote - indicate, designate, signigy
+denote - indicate, designate, signify
 circular - round, disk-shaped
+magnitude - immensity, vastness, hugeness
+cumbersome - unwieldy, unmanageable, awkward, clumsy
+convey - transport, carry, bring, take
+permutation - arrangement, order, grouping
+metaphor - figurative expression, image, trope
