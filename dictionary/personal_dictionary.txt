@@ -1,7 +1,7 @@
 # Words that I frequently forget or do not know by the time it is noted.
 
-et cetera, abbreviated to etc means "and the rest"
-Id est, usually abbreviated as i.e
+et cetera(and the rest), abbreviated to etc
+Id est(that mean), usually abbreviated as i.e
 xoxo - means huggs and kisses, while x means kiss and o means hug.
 conceive - getting pregnant
 incarnation - statue
@@ -9,7 +9,6 @@ convention - currently
 constraint - restriction, restraint, control
 notion - expecting, believe
 descendant - successor
-permutation - arrangement, order, sorting
 consecutive - following, continuous, successive
 accumulate - gather, collect
 infrastructure - base, framework
@@ -134,5 +133,14 @@ circular - round, disk-shaped
 magnitude - immensity, vastness, hugeness
 cumbersome - unwieldy, unmanageable, awkward, clumsy
 convey - transport, carry, bring, take
-permutation - arrangement, order, grouping
+permutation - arrangement, order, grouping, sorting
 metaphor - figurative expression, image, trope
+epilogue - afterward, postscript, appendix
+grief - sorrow, misery, pain
+tactic - plan, strategy, scheme, manoeuvre
+scummy - dirty, nasty, unpleasant
+linear - direct, straight, undeviating
+feasible - possible, likely
+sophistication - worldliness, experience, urbanity
+deduce - conclude, reason, work out
+prone - susceptible, vulnerable, liable
