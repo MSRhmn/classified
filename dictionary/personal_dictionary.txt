@@ -2,10 +2,7 @@
 
 et cetera(and the rest), abbreviated to etc
 Id est(that mean), usually abbreviated as i.e
-xoxo - means huggs and kisses, while x means kiss and o means hug.
-conceive - getting pregnant
 incarnation - statue
-convention - currently
 constraint - restriction, restraint, control
 notion - expecting, believe
 descendant - successor
@@ -21,7 +18,6 @@ consists - made of
 entity - structure, organization
 inbound - coming in
 outbound - going out
-tenancy - rent
 compliance - agreement, consent
 regulations - rule, order, law, governance, administration, activity
 retention - control of something, capability, determine
