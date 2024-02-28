@@ -46,6 +46,7 @@ Operators:
   - in  # Called the membership operator. Used to tell if a value is contained in a list, or another sequence.
 
   Boolean Operators:
+    # Operations that can be applied to boolean values themselves also called as logical operators.
     - and
     - or  # Used in an expression returns the value of the first operand that is not a falsy value. Otherwise it returns the last operand.
     - not
@@ -84,7 +85,7 @@ String AND it's Methods:
   - str.isalnum() # Return True if all characters in the string are alphanumeric and there is at least one character, False otherwise.
   - str.isdecimal() # Return True if all characters in the string are decimal characters and there is at least one character, False otherwise.
   - str.lower() # To get a lowercase version of a string.
-  - str.upper() # To get an uppercase version of a string
+  - str.upper() # To get an uppercase version of a string.
   - str.islower() # To check if a string is lowercase.
   - str.isupper() # To check if a string is uppercase.
   - str.title() # Return a titlecased version of the string where words start with an uppercase character and the remaining characters are lowercase.
@@ -182,6 +183,53 @@ Classes:
   # In python special methods are invoked automatically when conditions are met.
   # Polymorphism refers to a subclass's ability to adapt a method that already exists in its superclass to meet its needs.
   # If an abstract method is declared in a superclass, subclasses that inherit from the superclass must have their own implementation of the method.
-  - __init__()  # is a special method, called constructor to define object properties.
+  - __init__()  # Constructors, special methods that are called when an object is created, using __init__ method.
   - __repr__() # is a special method used to define a string representation of an object. 
   - super() # is a special function which allows to call a method from parent class.
+
+
+  
+Modules:
+  # Modules can be imported from seperate sub-directory by creating a empty __init__.py file in the sub-dir location.
+  # "import, from, as" are common keywords that frequently used in modules.
+
+  random:
+    - randint(num1, num2) # Takes 2 number argument and returns randomly among them, including the arguments.
+    - choice(seq) # Takes a list or tuple of data and choices one.
+    - shuffle(list) # Shuffles a list of items.
+    - sample(list) # Takes a sample from the list.
+  
+  # File I/O operations.
+  pathlib:
+    - Path() # Takes a file path.
+    - Path().exists() # Checks file path and returns boolean.
+    - read_text() # Reads text file content.
+    - write_text() # Writes contents to a text file.
+    - rstrip() # returns a copy of the string with trailing characters removed (based on the string argument passed). If no argument is passed, it removes trailing spaces.
+    - lstrip() # returns a copy of the string with leading characters removed (based on the string argument passed). If no argument is passed, it removes leading spaces.
+    - splitlines() # Splits lines from a file and returns a list.
+
+    json:
+      json.loads(str) # Load JSON string to python formatted data.
+      json.dumps(data, indent=4) # Dump python formatted data into JSON string.
+
+
+  PIP (Python Package Manager):
+  - python -m pip install [package_name] # Install a package.
+  - pip install --upgrade pip # Update the pip.
+  - pip list # Check all the packages.
+  - pip list --outdated # Check outdated packages.
+  - pip install --upgrade [package_name] # Update a specific package.
+  - (pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U) # Upgrade all the python packages with pip.
+  - pip --help # Show help for pip packages.
+
+    venv:
+      - python -m venv .venv # Create virtual environment.
+      - source .venv/bin/activate # Activate the environment.
+      - deactivate # Deactivate the environment.
+      - pip freeze > requirements.txt # Export all installed packages and their version to requirements file.
+      - pip install -r requirements.txt # Install required packages from the requirements file.
+
+    pytest:
+      # The name of a test file is important; it must start with test_. When we ask pytest to run the tests we’ve written, it will look for any file that begins with test_, and run all of the tests it finds in that file.
+      # Any function that starts with test_ will be discovered by pytest, and will be run as part of the testing process.
