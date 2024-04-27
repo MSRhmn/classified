@@ -63,7 +63,7 @@ expedite - speed up, accelerate
 redact - publication
 immensely - great, extremely
 analogies - comparison between two, explanation, clarification
-contiguous - common, sharing
+contiguous - common, sharing, adjacent, neighbouring
 bastion - defend
 stale - dried out, hardened
 restraint - control, moderation
@@ -140,3 +140,5 @@ feasible - possible, likely
 sophistication - worldliness, experience, urbanity
 deduce - conclude, reason, work out
 prone - susceptible, vulnerable, liable
+assertion - declaration, contention, statement, claim
+indices - index, guide, clue, hint
