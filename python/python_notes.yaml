@@ -188,7 +188,7 @@ Classes:
   - super() # is a special function which allows to call a method from parent class.
 
 
-  
+
 Modules:
   # Modules can be imported from seperate sub-directory by creating a empty __init__.py file in the sub-dir location.
   # "import, from, as" are common keywords that frequently used in modules.
@@ -201,18 +201,21 @@ Modules:
   
   # File I/O operations.
   pathlib:
-    - Path() # Takes a file path.
+    - Path() # Takes a file path and returns that path.
     - Path().exists() # Checks file path and returns boolean.
-    - read_text() # Reads text file content.
-    - write_text() # Writes contents to a text file.
+    - Path().resolve() # It returns a new 'Path object' representing the absolute path of the original path.
+    - Path().iterdir() # To iterate over files/dirs in the directory.
+    - Path().read_text() # Reads text file content.
+    - Path().write_text() # Writes contents to a text file.
     - rstrip() # returns a copy of the string with trailing characters removed (based on the string argument passed). If no argument is passed, it removes trailing spaces.
     - lstrip() # returns a copy of the string with leading characters removed (based on the string argument passed). If no argument is passed, it removes leading spaces.
     - splitlines() # Splits lines from a file and returns a list.
 
-    json:
-      json.loads(str) # Load JSON string to python formatted data.
-      json.dumps(data, indent=4) # Dump python formatted data into JSON string.
-
+  json:
+    json.loads(str) # Load JSON string to python formatted data.
+    json.load(file)
+    json.dumps(data, indent=4) # Dump python formatted data into JSON string.
+    json.dump(data, file, indent=4)
 
   PIP (Python Package Manager):
   - python -m pip install [package_name] # Install a package.
@@ -223,13 +226,18 @@ Modules:
   - (pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U) # Upgrade all the python packages with pip.
   - pip --help # Show help for pip packages.
 
-    venv:
-      - python -m venv .venv # Create virtual environment.
-      - source .venv/bin/activate # Activate the environment.
-      - deactivate # Deactivate the environment.
-      - pip freeze > requirements.txt # Export all installed packages and their version to requirements file.
-      - pip install -r requirements.txt # Install required packages from the requirements file.
+  venv:
+    - python -m venv .venv # Create virtual environment.
+    - source .venv/bin/activate # Activate the environment.
+    - deactivate # Deactivate the environment.
+    - pip freeze > requirements.txt # Export all installed packages and their version to requirements file.
+    - pip install -r requirements.txt # Install required packages from the requirements file.
 
-    pytest:
-      # The name of a test file is important; it must start with test_. When we ask pytest to run the tests we’ve written, it will look for any file that begins with test_, and run all of the tests it finds in that file.
-      # Any function that starts with test_ will be discovered by pytest, and will be run as part of the testing process.
+  pytest:
+    # The name of a test file is important; it must start with test_. When we ask pytest to run the tests we’ve written, it will look for any file that begins with test_, and run all of the tests it finds in that file.
+    # Any function that starts with test_ will be discovered by pytest, and will be run as part of the testing process.
+    # pytest with no command line argument will test all the files from current and sub directory, while with a test file name; it will just test that specific file.
+    - @pytest.fixture # Function that generates resource, which is used by multiple functions on that this decorator can be used.
+
+  requests:
+    - 
