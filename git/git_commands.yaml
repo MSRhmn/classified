@@ -25,7 +25,7 @@ tracking:
   - git stash # Stashing changes in the working directory to do other works.
   - git stash pop # Retrieving stashed changes in the wroking directory.
 
-  # Making commits
+  # Making commits and tagging
   - git commit # Commiting changes to the git repository, props-up cli editor to write proper message.
   - git commit -m <message> # Commiting changes and writing a quick shorte message.
   - git commit --amend -m <message> # Changing a bad commit message that is accidently happened, it also changes the commit hash. Try only if commits are not pushed to remote or it will cause conflicts.
@@ -35,6 +35,9 @@ tracking:
   - git reset --soft <commit_hash> # Moves the current branch HEAD to specific commit but remains the previously staged files.
   - git reset --hard <commit_hash> # Moves the current branch HEAD to specific commit also removes all the changes that are made.
   - git revert <commit_hash> # It makes a new commit by undoing a specific commit that has passed to it as argument.
+  - git tag -a v1.0 # Annotated tag of a specific point of commit.
+  - git tag # for listing tags.
+  - git tag -d v1.0 # deleting a tag.
   - git rm --cached <file_name> # Stop tracking a file in the working directory, but keep it in the file system.
   - git clean -df # Removing untracked directories and files from the working directory.
 
