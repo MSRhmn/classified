@@ -142,3 +142,5 @@ deduce - conclude, reason, work out
 prone - susceptible, vulnerable, liable
 assertion - declaration, contention, statement, claim
 indices - index, guide, clue, hint
+scaffolding - temporary
+introspective - inward-looking, introvert, thoughtful
