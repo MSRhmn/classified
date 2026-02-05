@@ -144,3 +144,4 @@ assertion - declaration, contention, statement, claim
 indices - index, guide, clue, hint
 scaffolding - temporary
 introspective - inward-looking, introvert, thoughtful
+generic - common, collective, general
