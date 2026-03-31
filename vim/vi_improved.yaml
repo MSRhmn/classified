@@ -13,7 +13,7 @@ Editing in vi:
   - :q  # To exit out of vi, if there has no chage happened in the file.
   - :q!  # Exit out of the vi without making any changes.
   - A # This command will move cursor to the end of the line and begin to insert mode.
-
+  - (ctrl + v) to visual block mode then navigating multiple lines to mark and then press (shift + i) typing the aprropriate word then esc. # Very efficient for multiple lines of code commenting and uncommenting.
 
 Navigation:
   # Any number before a command, vi will perform number of times performance.
