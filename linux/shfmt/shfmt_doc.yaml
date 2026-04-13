@@ -1,0 +1,10 @@
+# Shell Script formatter document
+
+  - shfmt script.sh # Outputs formatted version to terminal, does not modify file
+  - shfmt -w script.sh # Format file in place
+  - shfmt -w . # Fromat entire project
+  - shfmt -i 2 -w script.sh # Set a default indentation, 2 is recommended
+  - shfmt -d script.sh # Show difference between applying
+  - shfmt -l . # List unformatted files
+  - shfmt -s -w script.sh # Simplify code slightly
+  - shfmt -i 2 -ci -w script.sh # Standard script
