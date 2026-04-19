@@ -1,0 +1,14 @@
+# === tmux documentation ===
+
+  # Basic Navigation
+  - Ctrl + b, then d  # Detaching session, session will be running in the background.
+  - tmux attach  # Reattaching session.
+  - Ctrl + b, then %  # Terminal will be splitted vertically.
+  - Ctrl + b, then "  # Terminal will be splitted horizontally.
+  - Ctrl + b, then arrow keys  # For moving through terminal panes.
+
+  # Intermediate approach
+  - tmux new -s dev  # Naming sessions explicitly.
+  - tmux attach -t dev # Returning to sessions with explicit names.
+  - tmux ls  # Listing tmux sessions.
+   
