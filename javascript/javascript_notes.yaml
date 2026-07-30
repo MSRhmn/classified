@@ -1,0 +1,45 @@
+# JavaScript Document
+
+Premitive Data Types:
+  - String
+  - Number
+  - Boolean
+  - null
+  - undefined
+  - Bigint
+  - Symbol
+
+
+Special Numbers:
+  # 0/0 is a NaN in javascript, while 1/0 is Infinity
+  - Infinity
+  - -Infinity
+  - NaN 
+
+
+Strings:
+  # Strings in javascript can be defined as 'string', "string" or `string`.
+  # Strings cannot be divided, multiplied, or subtracted, but the + operator can be used on them. It does not add, but it concatenates—it glues two strings together.
+
+
+Operators:
+  - typeof # is a special operator that takes only one value to operate, that is why it is a unary operator.
+  - (-) # can be used as both binary or unary operator.
+
+  Logical Operators:
+    - (&&) # AND
+    - (||) # OR
+    - (!) # NOT is a unary operator.
+
+  Ternar Operator:
+    - (?:) # conditional operator/ternary operator.
+
+
+Special Values:
+  - null
+  - undefined
+
+
+Built-in Functions:
+  - Number() # Converts value to a number.
+  - Number.isNan()
