@@ -64,6 +64,9 @@ tail -f <file_name> # reads file with any current update with in the file.
   find . -size +5MGk # returns size of the files.
   find . -empty # to check what files are empty.
 
+crontab -l # checking users cronjobs
+crontab -e # editing users cronjobs
+
 
 # Users and Groups
 
