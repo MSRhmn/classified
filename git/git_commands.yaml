@@ -38,6 +38,7 @@ tracking:
   - git tag -a v1.0 # Annotated tag of a specific point of commit.
   - git tag # for listing tags.
   - git tag -d v1.0 # deleting a tag.
+  - git push origin <tag_name> # Pushing git tags in remote repo.
   - git rm --cached <file_name> # Stop tracking a file in the working directory, but keep it in the file system.
   - git clean -df # Removing untracked directories and files from the working directory.
 
