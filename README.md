@@ -25,7 +25,7 @@ commands, configuration notes, and reminders I want to find again quickly.
   - [Language notes](python/python_notes.yaml)
 - Vim
   - [Vim notes](vim/vi_improved.yaml)
-- [Personal dictionary](dictionary/personal_dictionary.txt)
+- [Personal dictionary](dictionary/personal_dictionary.md)
 
 ## How to use these notes
 
