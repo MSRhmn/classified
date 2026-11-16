@@ -1,0 +1,295 @@
+# SAA-C03: Compute and Storage
+
+## S3(Simple Storage Solution)
+
+- Can be use to store static data like text file, image file, videos, any file type but not Operating System or use as Databases.
+- Total volume of data and number of objects is unlimited in S3.
+- Objects can be maximum at 5TB in size.
+- S3 Bucket is similar to folder in storage system. All AWS accounts share the S3 namespace. Each S3 namespace is globally unique.
+- S3 stores data as a key-value pair system. File name will be key and files data will be the value.
+- S3 Bucket also has a version ID which is important for storing multiple version of a project.
+- Metadata which is data about the data that is stored in S3 Bucket. (i.e. content-type, last-modified)
+
+### Securing Data with S3 Block Public Access
+
+- S3 Buckets are private by default (including all objects within it). Buckets has to allow public access on both bucket and its objects in order to make the bucket public.
+- Individual objects can be public by using Object ACLs.
+- Entire bucket can be public using S3 bucket policy.
+- S3 scales automatically with demand.
+
+### S3 Versioning
+
+- All versions of objects are stored in S3. This includes all writes even deleted objects. Once enabled cannot be disabled. Only suspend is allowed.
+- It is a great backup tool.
+- Can be integrated with lifecycle rules.
+- Multi Factor Authentication supports for securing data.
+
+### S3 Classes
+
+#### S3 Standard Options
+
+- S3 Standard
+- S3 Standard-Infrequent Access
+- S3 Standard One Zone-Infrequent Access
+- S3 Intelligent-Tiering
+
+#### S3 Glacier Options
+
+- Glacier Instant Retrieval
+- Glacier Flexible Retrieval
+- Glacier Deep Archive
+
+### Life Cycle Management
+
+- Automate moving of objects between different storage tiers.
+- Can be used in conjunction with versioning.
+- Can be applied to current version as well as previous versions.
+
+### S3 Objects Lock and Glacier Vault Lock
+
+#### S3 Objects Lock
+
+- S3 Object Lock, uses to store objects using write once, read many (WORM) model.
+- S3 Object Lock, can be used in a individual objects or across the bucket as a whole.
+
+- S3 Object Lock, comes with two modes (governance mode and compliance mode):
+  - Governance Mode - Users can't overwrite or delete and object version or alter it's lock settings unless they have special permissions.
+  - Compliance Mode - A protected object version cannot be overwritten or deleted by any user, including the root user account in AWS.
+
+#### S3 Glacier Vault Lock
+
+- S3 Glacier Vault Lock helps you to easily deploy and enforce compliance controls for individual S3 Glacier vaults with a Vault Lock policy. You can specify controls such as "write once read many" (WORM) in a Vault Lock policy and lock the policy from future edits. Once locked, policy can no longer be changed.
+
+### S3 Ecncryption
+
+#### Encryption in transit
+
+- SSL/TLS
+- HTTPS
+
+#### Encryption at REST
+
+##### Server Side Encryption
+
+- SSE-S3 (AES 256-bit)
+- SSE-KMS (KMS Managed Keys)
+- SSE-C (Customer Managed)
+
+##### Client Side Encryption
+
+- User enforce to encrypt files before uploading to S3.
+
+##### Enforcing Encryption with a Bucket Policy
+
+- A bucket policy can deny all PUT request that don't include x-amz-server-side-encryption parameter in the request header.
+
+### S3 Performance
+
+- Prefix - bucketname/folder/subfolder/file.txt > /folder/subfolder
+- 3500 PUT/COPY/POST/DELETE and 5500 GET/HEAD request per second, per prefix.
+- More prefix means more speed, if there is 2 prefixes achieving object request will be 11000 per second.
+- Objects that are encrypted in S3 with SSE-KMS has limit to uploading/downloading objects. It is region specific, it's either 5500, 10000 or 30000 request per second.
+- Multipart uploads for uploading files to increase performance. Should be used for any files that is over 100 MB, required for file over 5 GB.
+- Use S3 byte-range fetches to download files from S3 for increase perfromance.
+
+### S3 Replication
+
+- Replicate objects from one bucket to another. Supported for both cross region and same region replication.
+- Objects in a existing bucket are not replicated automatically.
+- Delete markers are not replicated by default. But can be turn that on as an option.
+
+## EC2(Elastic Compute Cloud)
+
+- https://instances.vantage.sh/ (EC2 Instance Info)
+
+### Ports Info
+
+- 22 SSH (Secure Shell) - For login into Linux.
+- 21 FTP (File Transfer Protocol) - Upload files into file file share.
+- 22 SFTP (Secure File Transfer Protocol) - Upload files using SSH.
+- 80 HTTP - Access unsecured website.
+- 443 HTTPS - Access secured website.
+- 3389 RDP (Remote Desktop Protocol) - Log into a windows instance.
+
+### EC2 Purchasing Options
+
+- On-Demand Instances - short time workload, testing, predictable pricing, pay by hour or second, depending on the type of instance. Without paying any upfront.
+
+- Reserved Instances (1 & 3 years) - Application with steady state or predictable usage or application that require reserved capacity. Make upfront to reduce compute cost. Up to 72% discount on hourly charge. Reserved instances can be scheduled for a time and it is regional.
+
+  - Standard Reserved Instances - Long workloads, up to 72% off on-demand price.
+
+  - Convertible Reserved Instances - Long workloads with flexible instances, up to 54% off on-demand price. Has ability to change reserved instances type greater or equal value.
+
+- Spot Instances - Short workloads with urgent capacity, cheap, can lose instances (less reliable). Use cases high performance computing, big data analytics, CI/CD pipeline, containerized. Can't be used in persistent workloads, databases or in critical jobs. Save upto 90%. For terminating persistent spot request user have to go and cancel the spot request first then terminate the instances. A "Spot Fleet" is a collection of "Spot Instances" and (optionally) "On-Demand Instances". Spot Fleet will try and match the target capacity with the price restraints, can be configured with multiple pools. You can block spot instances from terminating by using "Spot Block".
+
+- Dedicated Hosts
+  - Compliance - Regulatory requirements that may not support multi-tenant virtualization.
+  - Licensing - Greate for licensing that doesn't support multi-tanant or cloud deployment.
+  - On-Demand - Can be purchase for on-demand (hourly).
+  - Reserved - Can be purchased as a reservation for up to 70% off the on-demand price.
+
+### Security Groups and Bootstrap scripts
+
+- Security groups are virtual firewall for ec2 instances. By default, everything is blocked.
+- All inbound traffic is blocked and outbound traffic is allowed in by default.
+- Security groups can be attached to multiple instances also instances can have multiple groups attached to it.
+- Security groups live outside the EC2 instances.
+- Security groups are stateful.
+- User data is bootstrap scripts.
+- Bootstrap scripts runs at instance boot time and it has root level permission. It passes user data to ec2 instance. Can be use to install applications like web servers and database.
+- Meta data is data about data, in this case it is data about the ec2 instances.
+- Bootstrap scripts aka "user data" can be use to access metadata.
+
+### EC2 Networking
+
+- ENI (Elastic Network Interface) - For basic, day to day networking.
+- EN (Enhanced Networking) - Uses single root i/o virtualization (SR-IOV) to provide high performance. Depending on instance type, Enhanced Networking can be enabled using
+  - ENA (Elastic Network Adapter) - Supports network speeds upto 100 Gbps for supported instance types.
+  - VF (Intel 82599 Virtual Function Interface) - Supports network speeds upto 10 Gbps for supported instance types. Typically used on older instances.
+- EFA (Elastic Fabric Adapter) - accelerates high performance computing (HPC) using os-bypass and machine learning applications.
+
+### EC2 Placement Group
+
+- Only certain types of instances can be launched in a placement group (e.g., compute optimized, GPU, memory optimized, storage optimized).
+- AWS recommends homogenous instances within cluster placement groups.
+- Placement group merging is not allowed.
+- To move a existing instance to placement group first the instance need to be in stopped state. Moving and removing instances using AWS CLI or AWS SDKs but not available via console yet.
+
+  - Cluster - Grouping of instances with a single availability zone. Recommended for applications that need low latency or high network throughput or both.
+
+  - Spread - Spread placement group is a group of instances that each placed on distinct underlying hardware. Spread placement groups are recommended for applications that have small number of critical instances that should be kept separate from each other.
+
+  - Partition - Spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions. e.g., Hbase, HDFS, Cassandra.
+
+### vCenter and VMware
+
+- vCenter can be deplyed into AWS cloud using VMware.
+- vCenter on AWS allows you to extend your private cloud to the AWS cloud.
+
+### Outposts
+
+- extending AWS into data center this is where outposts comes in.
+- AWS outposts racks for large deployment.
+- AWS servers for smaller deployments.
+
+## EBS (Elastic Block Store) & EFS (Elastic File System)
+
+### EBS Volume Types
+
+- Storage volumes that can attach to ec2 instances.
+- Automatically replicated within a single availability zone to protect against hardware failure.
+- Designed for mission critical data like production workloads.
+- Dynamically increase capacity and change the volume type with no downtime or performance impact in live system.
+
+- SSD(Solid State Disk):
+
+  - General Purpose SSD (gp2):
+    - 3 IOPS per GiB, upto maximum of 16,000 IOPS per volume.
+    - gp2 volumes smaller than 1 TB can burst upto 3,000 IOPS.
+    - Good for boot volumes, development and test applications that are not latency sensitive.
+
+  - General Purpose SSD (gp3):
+    - Predictable 3000 IOPS baseline performance and 125 MiB/s regardless of volume size.
+    - Ideal for applications that require high performance at a low cost, such as MySQL, cassandra, virtual desktops and Hadoop analytics.
+    - the performance of gp3 4 times faster than max throughput of gp2 volumens.
+
+  - Provisioned IOPS SSD (io1):
+    - Suitable for latency sensitive and OLTP applications
+    - 50 IOPS per GiB and Upto 64,000 IOPS per volume.
+    - Use case if there is need more than 16000 IOPS for both io1 and io2.
+    - Designed for I/O-intensive applications, large database and latency sensitive workloads.
+
+  - Provisioned IOPS SSD (io2):
+    - Suitable for latency sensitive and OLTP applications
+    - 500 IOPS per GiB and Upto 64,000 IOPS per volume.
+    - 99.999% durablity instead of 99.9%
+
+- HDD (Hard Disk Drive):
+
+  - Throughput Optimized HDD (st1):
+    - Low cost HDD Volume.
+    - Maximum throughput of 500 MB/s per volume.
+    - Frequently accessed, throughput-intensive workloads.
+    - Suitable for Big data, Data warehouse, ETL (Extract Transoform and Load) and log processsing. **
+    - Cannot be a boot volume.
+
+  - Cold HDD (sc1):
+    - Maximum throughput of 250 MB/s per volume.
+    - Less frequently access data. A good choice for colder data requiring less scans per day.
+    - This is the lowest cost volume.
+    - Cannot be a boot volume.
+
+### Volumes and Snapshots
+
+- Volumes exist on EBS where Snapshots exist on S3.
+- Snapshots are point-in-time photographs of the volumes and are incremental in nature.
+- Fisrt snapshot will take some time to create. For consistent snapshot, stop the instance and detach the volume.
+- Snapshots can be shared between AWS accounts as well as between regions, but first it needs to be copied in target region.
+- EBS volumes can be resized in the fly as well as changing of the volume types.
+
+### AMIs EBS vs Instance Store
+
+- Instance store volumes are sometimes called ephemeral storage.
+- Both EBS volume and instance store can be rebooted without losing data.
+- Instance store cannot be stopped, if the underlying hardware fails then the data will be lost.
+- By default, both root volumes will be deleted on termination. However, with EBS volume there is a option to tell AWS to keeps the volume after instance termination.
+- An AMI is just a blueprint for EC2 instance.
+
+### Volume Encryption
+
+#### Encrypted Volumes
+
+- Data at rest is encrypted inside the volume.
+- All data in flight moving between the instance and volume is encrypted.
+- All snapshots are encrypted.
+- All volumes created from snapshots are encrypted.
+
+#### Encrypt Voumes
+
+- Create a snapshot of the unencrypted volume.
+- Create a copy of the snapshot and select the encryption option.
+- Create an AMI from the encrypted snapshot.
+- Use the AMI to launch the new encrypted instance.
+
+### EC2 Hibernation
+
+- Preserves the in-memory (RAM) data on persistent storage (EBS).
+- Much faster in boot up because there is no need to reload the operating system.
+- Instance RAM must be less than 150 GB.
+- Instance families include C3, C4, C5, M3, M4, M5, R3, R4 and R5 (CMR Group).
+- Available for Windows, Amazon Linux 2 AMI and Ubuntu.
+- Instances can't be hibernated for more than 60 days.
+- Available for On-Demand instances and Reserved instances.
+
+### Elastic File System(EFS)
+
+- Highly scalable shared storage using NFS.
+- Supports the Network File System version 4(NFSv4) protocol.
+- Only pay for the storage that in use (no pre-provisioned required).
+- Can scale upto petabytes.
+- Supports thousands of concurrent NFS connection.
+- Data is stored accross multiple AZs within a region.
+- Read after write consistency.
+
+### FSx
+
+- Centralized storage solution across multiple AZs for Windows as well as for Linux.
+
+#### EFS
+
+- Distributed, highly resilient storage for linux instances and linux-based application.
+
+#### Amazon FSx for Windows
+
+- Centralized storage for windows-based application, such as Active Directory, Sharepoint, Microsoft SQL Server, Workspaces, IIS Web Server or any other native Microsoft application.
+
+#### Amazon FSx for Lustre
+
+- High-speed, high-capacity distributed storage. This will be for application that do high performance computing (HPC), financial modeling etc. FSx for lustre can store data directly on S3.
+
+### AWS Backup
+
+  - Use AWS Backup to backup AWS services, such as EC2, EBS, EFS, FSx for Lustre, FSx for windows file server and Storage Gateway.
+  - AWS Organization can be conjunctioned with AWS Backup to backup different AWS services across multiple AWS accounts.
+  - Backup gives centralized control, by automating backups and defining life cycle policies for data. To get better compliance, enforcing backup policies, ensuring backups are encrypted and audit them once they are completed.

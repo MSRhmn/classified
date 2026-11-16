@@ -6,8 +6,9 @@ commands, configuration notes, and reminders I want to find again quickly.
 ## Topics
 
 - AWS
-  - [CLI commands](aws/aws_cli.yaml)
-  - [Solutions Architect Associate notes](aws/aws_saac03.yaml)
+  - [AWS notes index](aws/README.md)
+  - [CLI commands](aws/aws_cli.md)
+  - [Solutions Architect Associate notes](aws/saa-c03/README.md)
 - Git
   - [Commands and configuration](git/git_commands.yaml)
 - Google Search
